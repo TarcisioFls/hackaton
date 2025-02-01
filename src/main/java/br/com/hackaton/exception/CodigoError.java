@@ -30,6 +30,9 @@ public enum CodigoError {
     LATITUDE_ENDERECO_OBRIGATORIO("Latitude do endereço é obrigatório", BAD_REQUEST, FALSE),
     LONGITUDE_ENDERECO_OBRIGATORIO("Longitude do endereço é obrigatório", BAD_REQUEST, FALSE),
 
+    NOME_MEDICO_OBRIGATORIO("Nome do medico é obrigatório", BAD_REQUEST, FALSE),
+    MEDICO_NAO_ENCONTRADO("Medico não encontrado", NOT_FOUND, FALSE),
+
     ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE);
 
     private final String mensagem;
