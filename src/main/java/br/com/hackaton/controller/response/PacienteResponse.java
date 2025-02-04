@@ -10,6 +10,8 @@ public class PacienteResponse {
 
     private String nome;
 
+    private String email;
+
     private String cpf;
 
     private String telefone;
@@ -20,10 +22,11 @@ public class PacienteResponse {
 
     public PacienteResponse() {}
 
-    public PacienteResponse(Long id, String nome, String cpf, String telefone, String cns, EnderecoResponse endereco) {
+    public PacienteResponse(Long id, String nome, String email, String cpf, String telefone, String cns, EnderecoResponse endereco) {
 
         this.id = id;
         this.nome = nome;
+        this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
         this.cns = cns;
@@ -34,6 +37,7 @@ public class PacienteResponse {
 
         this.id = paciente.getId();
         this.nome = paciente.getNome();
+        this.email = paciente.getEmail();
         this.cpf = paciente.getCpf();
         this.telefone = paciente.getTelefone();
         this.cns = paciente.getCns();

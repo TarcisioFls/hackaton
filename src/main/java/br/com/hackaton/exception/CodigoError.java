@@ -39,6 +39,7 @@ public enum CodigoError {
     CPF_PACIENTE_OBRIGATORIO("CPF do paciente é obrigatório", BAD_REQUEST, FALSE),
     NOME_PACIENTE_OBRIGATORIO("Nome do paciente é obrigatório", BAD_REQUEST, FALSE),
     PACIENTE_NAO_ENCONTRADO("Paciente não encontrado", NOT_FOUND, FALSE),
+    EMAIL_PACIENTE_OBRIGATORIO("Email do paciente é obrigatório", BAD_REQUEST, FALSE),
 
     ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE);
 

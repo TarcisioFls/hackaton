@@ -10,6 +10,7 @@ import lombok.Getter;
 
 import static br.com.hackaton.exception.CodigoError.CNS_PACIENTE_OBRIGATORIO;
 import static br.com.hackaton.exception.CodigoError.CPF_PACIENTE_OBRIGATORIO;
+import static br.com.hackaton.exception.CodigoError.EMAIL_PACIENTE_OBRIGATORIO;
 import static br.com.hackaton.exception.CodigoError.NOME_PACIENTE_OBRIGATORIO;
 import static br.com.hackaton.exception.CodigoError.TELEFONE_PACIENTE_OBRIGATORIO;
 import static jakarta.persistence.CascadeType.ALL;
@@ -22,6 +23,9 @@ public class Paciente extends BaseEntity{
 
     @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
     private String cpf;
@@ -37,19 +41,21 @@ public class Paciente extends BaseEntity{
 
     public Paciente() {}
 
-    public Paciente(Long id, String nome, String cpf, String telefone, String cns, Endereco endereco) {
+    public Paciente(Long id, String nome, String email, String cpf, String telefone, String cns, Endereco endereco) {
 
         super(id);
         this.nome = validaNome(nome);
+        this.email = validaEmail(email);
         this.cpf = validaCpf(cpf);
         this.telefone = validaTelefone(telefone);
         this.cns = validaCns(cns);
         this.endereco = endereco;
     }
 
-    public Paciente(String nome, String cpf, String telefone, String cns, Endereco endereco) {
+    public Paciente(String nome, String email, String cpf, String telefone, String cns, Endereco endereco) {
 
         this.nome = validaNome(nome);
+        this.email = validaEmail(email);
         this.cpf = validaCpf(cpf);
         this.telefone = validaTelefone(telefone);
         this.cns = validaCns(cns);
@@ -58,8 +64,17 @@ public class Paciente extends BaseEntity{
 
     public Paciente(PacienteRequest pacienteRequest) {
 
-        this(pacienteRequest.nome(), pacienteRequest.cpf(), pacienteRequest.telefone(), pacienteRequest.cns(),
+        this(pacienteRequest.nome(), pacienteRequest.email(), pacienteRequest.cpf(), pacienteRequest.telefone(), pacienteRequest.cns(),
                 new Endereco(pacienteRequest.enderecoRequest()));
+    }
+
+    private String validaEmail(String email) {
+
+        if (isNull(email) || email.isBlank()) {
+            throw new ExceptionAdvice(EMAIL_PACIENTE_OBRIGATORIO);
+        }
+
+        return email;
     }
 
     private String validaCns(String cns) {
@@ -101,6 +116,7 @@ public class Paciente extends BaseEntity{
     public void atualiza(PacienteRequest request) {
 
         this.nome = validaNome(request.nome());
+        this.email = validaEmail(request.email());
         this.cpf = validaCpf(request.cpf());
         this.telefone = validaTelefone(request.telefone());
         this.cns = validaCns(request.cns());

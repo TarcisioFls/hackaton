@@ -9,6 +9,9 @@ public record PacienteRequest(
         String nome,
 
         @NotBlank
+        String email,
+
+        @NotBlank
         String cpf,
 
         @NotBlank
