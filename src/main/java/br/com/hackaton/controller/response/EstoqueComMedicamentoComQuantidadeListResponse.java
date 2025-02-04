@@ -1,0 +1,28 @@
+package br.com.hackaton.controller.response;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Getter
+@Setter
+public class EstoqueComMedicamentoComQuantidadeListResponse {
+
+    private Long id;
+
+    private Long ubsId;
+
+    private String ubsNome;
+
+    private String telefone;
+
+    private String inicioAtendimento;
+
+    private String fimAtendimento;
+
+    private List<MedicamentoComQuantidadeResponse> medicamento;
+
+    private EnderecoResponse endereco;
+
+}

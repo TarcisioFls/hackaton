@@ -5,6 +5,8 @@ import br.com.hackaton.entity.Medico;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Getter
 public class MedicoResponse {
 
@@ -16,19 +18,25 @@ public class MedicoResponse {
 
     private String nome;
 
+    private String email;
+
+    private String telefone;
+
     private String crm;
 
-    private Especialidade especialidade;
+    private List<Especialidade> especialidades;
 
     public MedicoResponse() {}
 
-    public MedicoResponse(Long id, LocalDateTime dataCriacao, LocalDateTime dataAtualizacao, String nome, String crm, Especialidade especialidade) {
+    public MedicoResponse(Long id, LocalDateTime dataCriacao, LocalDateTime dataAtualizacao, String nome, String email, String telefone, String crm, List<Especialidade> especialidades) {
         this.id = id;
         this.dataCriacao = dataCriacao;
         this.dataAtualizacao = dataAtualizacao;
         this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
         this.crm = crm;
-        this.especialidade = especialidade;
+        this.especialidades = especialidades;
     }
 
     public MedicoResponse(Medico medico) {
@@ -36,7 +44,9 @@ public class MedicoResponse {
         this.dataCriacao = medico.getDataHoraCriacao();
         this.dataAtualizacao = medico.getDataHoraAtualizacao();
         this.nome = medico.getNome();
+        this.email = medico.getEmail();
+        this.telefone = medico.getTelefone();
         this.crm = medico.getCrm();
-        this.especialidade = medico.getEspecialidade();
+        this.especialidades = medico.getEspecialidades();
     }
 }

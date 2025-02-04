@@ -3,11 +3,9 @@ package br.com.hackaton.service.impl;
 import br.com.hackaton.controller.request.MedicoRequest;
 import br.com.hackaton.controller.response.MedicoResponse;
 import br.com.hackaton.entity.Medico;
-import br.com.hackaton.exception.CodigoError;
 import br.com.hackaton.exception.ExceptionAdvice;
 import br.com.hackaton.repository.MedicoRepository;
 import br.com.hackaton.service.MedicoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -17,16 +15,17 @@ import static br.com.hackaton.exception.CodigoError.MEDICO_NAO_ENCONTRADO;
 @Service
 public class MedicoServiceImpl implements MedicoService {
 
-    @Autowired
-    private MedicoRepository medicoRepository;
+
+    private final MedicoRepository medicoRepository;
+
+    public MedicoServiceImpl(MedicoRepository medicoRepository) {
+        this.medicoRepository = medicoRepository;
+    }
 
     @Override
-    public MedicoResponse cria(MedicoRequest request) {
+    public void criar(MedicoRequest request) {
         var medico = new Medico(request);
         medicoRepository.save(medico);
-
-        return new MedicoResponse(medico);
-
     }
 
     @Override
@@ -40,15 +39,8 @@ public class MedicoServiceImpl implements MedicoService {
     public MedicoResponse atualiza(Long id, MedicoRequest request) {
         var medicoParaAtualizar = medicoRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(MEDICO_NAO_ENCONTRADO));
 
-        if(!medicoParaAtualizar.getNome().equals(request.nome())) {
-            medicoParaAtualizar.setNome(request.nome());
-        }
-        if(!medicoParaAtualizar.getCrm().equals(request.crm())) {
-            medicoParaAtualizar.setCrm(request.crm());
-        }
-        if(!medicoParaAtualizar.getEspecialidade().equals(request.especialidade())){
-            medicoParaAtualizar.setEspecialidade(request.especialidade());
-        }
+        medicoParaAtualizar.atualizar(request);
+
         medicoRepository.save(medicoParaAtualizar);
 
         return new MedicoResponse(medicoParaAtualizar);

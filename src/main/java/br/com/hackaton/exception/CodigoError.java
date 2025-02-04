@@ -31,7 +31,21 @@ public enum CodigoError {
     LONGITUDE_ENDERECO_OBRIGATORIO("Longitude do endereço é obrigatório", BAD_REQUEST, FALSE),
 
     NOME_MEDICO_OBRIGATORIO("Nome do medico é obrigatório", BAD_REQUEST, FALSE),
+    CRM_MEDICO_OBRIGATORIO("CRM do medico é obrigatório", BAD_REQUEST, FALSE),
+    EMAIL_MEDICO_OBRIGATORIO("Email do medico é obrigatório", BAD_REQUEST, FALSE),
+    TELEFONE_MEDICO_OBRIGATORIO("Telefone do medico é obrigatório", BAD_REQUEST, FALSE),
     MEDICO_NAO_ENCONTRADO("Medico não encontrado", NOT_FOUND, FALSE),
+
+    ESTOQUE_NAO_ENCONTRADO("Estoque não encontrado", NOT_FOUND, FALSE),
+    QUANTIDADE_ADICIONADA_ESTOQUE_NEGATIVA("A quantidade a ser adicionada deve ser maior que zero", BAD_REQUEST, FALSE),
+    QUANTIDADE_ESTOQUE_NEGATIVA("A quantidade a ser retirada é maior que a quantidade do estoque", BAD_REQUEST, FALSE),
+
+    CNS_PACIENTE_OBRIGATORIO("CNS do paciente é obrigatório", BAD_REQUEST, FALSE),
+    TELEFONE_PACIENTE_OBRIGATORIO("Telefone do paciente é obrigatório", BAD_REQUEST, FALSE),
+    CPF_PACIENTE_OBRIGATORIO("CPF do paciente é obrigatório", BAD_REQUEST, FALSE),
+    NOME_PACIENTE_OBRIGATORIO("Nome do paciente é obrigatório", BAD_REQUEST, FALSE),
+    PACIENTE_NAO_ENCONTRADO("Paciente não encontrado", NOT_FOUND, FALSE),
+    EMAIL_PACIENTE_OBRIGATORIO("Email do paciente é obrigatório", BAD_REQUEST, FALSE),
 
     ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE);
 

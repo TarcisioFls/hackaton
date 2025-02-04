@@ -29,7 +29,7 @@ public class MedicamentoController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public void cria(@RequestBody MedicamentoRequest request) {
+    public void criar(@RequestBody MedicamentoRequest request) {
         medicamentoService.cria(request);
     }
 

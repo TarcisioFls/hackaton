@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 
 public interface MedicoService {
 
-    MedicoResponse cria(MedicoRequest request);
+    void criar(MedicoRequest request);
 
     MedicoResponse buscarPorId(Long id);
 

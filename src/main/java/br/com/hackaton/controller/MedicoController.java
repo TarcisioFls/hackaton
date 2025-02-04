@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("medico")
@@ -17,9 +19,9 @@ public class MedicoController {
     private final MedicoService medicoService;
 
     @PostMapping
-    public ResponseEntity<MedicoResponse> cria(@RequestBody @Valid MedicoRequest request){
-       var medico =  medicoService.cria(request);
-        return ResponseEntity.ok(medico);
+    @ResponseStatus(CREATED)
+    public void criar(@RequestBody @Valid MedicoRequest request){
+       medicoService.criar(request);
     }
 
     @GetMapping("/{id}")

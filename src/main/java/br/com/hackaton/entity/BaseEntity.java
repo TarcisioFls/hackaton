@@ -25,6 +25,13 @@ public class BaseEntity {
     @Column(name = "data_hora_atualizacao")
     private LocalDateTime dataHoraAtualizacao;
 
+    public BaseEntity() {}
+
+    public BaseEntity(Long id) {
+
+        this.id = id;
+    }
+
     @PrePersist
     public void prePersist() {
         this.dataHoraCriacao = LocalDateTime.now();
