@@ -43,4 +43,10 @@ public class UbsResponse {
         this(ubs.getId(), ubs.getDataHoraCriacao(), ubs.getDataHoraAtualizacao(), ubs.getNome(), ubs.getTelefone(),
              ubs.getInicioAtendimento(), ubs.getFimAtendimento(), new EnderecoResponse(ubs.getEndereco()));
     }
+
+    public UbsResponse(UbsResponse ubsResponse) {
+        this(ubsResponse.getId(), ubsResponse.getDataCriacao(), ubsResponse.getDataAtualizacao(), ubsResponse.getNome(),
+             ubsResponse.getTelefone(), ubsResponse.getInicioAtendimento(), ubsResponse.getFimAtendimento(),
+             new EnderecoResponse(ubsResponse.getEndereco()));
+    }
 }

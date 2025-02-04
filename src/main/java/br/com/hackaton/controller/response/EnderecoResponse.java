@@ -58,4 +58,11 @@ public class EnderecoResponse {
              endereco.getCidade(), endereco.getEstado(), endereco.getLatitude(), endereco.getLongitude());
     }
 
+    public EnderecoResponse(EnderecoResponse enderecoResponse) {
+        this(enderecoResponse.getId(), enderecoResponse.getDataCriacao(), enderecoResponse.getDataAtualizacao(),
+             enderecoResponse.getCep(), enderecoResponse.getLogradouro(), enderecoResponse.getNumero(),
+             enderecoResponse.getComplemento(), enderecoResponse.getBairro(), enderecoResponse.getCidade(),
+             enderecoResponse.getEstado(), enderecoResponse.getLatitude(), enderecoResponse.getLongitude());
+    }
+
 }

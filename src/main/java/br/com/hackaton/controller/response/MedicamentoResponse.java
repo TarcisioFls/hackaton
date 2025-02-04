@@ -4,7 +4,6 @@ import br.com.hackaton.entity.Medicamento;
 import br.com.hackaton.entity.Tarja;
 import lombok.Getter;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,7 +13,6 @@ public class MedicamentoResponse {
     private String nome;
     private Tarja tarja;
     private String sku;
-    private BigInteger quantidade;
     private LocalDateTime dataCriacao;
 
     public MedicamentoResponse() {}
@@ -25,7 +23,15 @@ public class MedicamentoResponse {
         this.nome = medicamento.getNome();
         this.tarja = medicamento.getTarja();
         this.sku = medicamento.getSku();
-        this.quantidade = medicamento.getQuantidade();
         this.dataCriacao = medicamento.getDataHoraCriacao();
+    }
+
+    public MedicamentoResponse(MedicamentoResponse medicamentoResponse) {
+
+        this.id = medicamentoResponse.getId();
+        this.nome = medicamentoResponse.getNome();
+        this.tarja = medicamentoResponse.getTarja();
+        this.sku = medicamentoResponse.getSku();
+        this.dataCriacao = medicamentoResponse.getDataCriacao();
     }
 }

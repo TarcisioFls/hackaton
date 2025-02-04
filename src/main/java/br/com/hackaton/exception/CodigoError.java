@@ -30,6 +30,10 @@ public enum CodigoError {
     LATITUDE_ENDERECO_OBRIGATORIO("Latitude do endereço é obrigatório", BAD_REQUEST, FALSE),
     LONGITUDE_ENDERECO_OBRIGATORIO("Longitude do endereço é obrigatório", BAD_REQUEST, FALSE),
 
+    ESTOQUE_NAO_ENCONTRADO("Estoque não encontrado", NOT_FOUND, FALSE),
+    QUANTIDADE_ADICIONADA_ESTOQUE_NEGATIVA("A quantidade a ser adicionada deve ser maior que zero", BAD_REQUEST, FALSE),
+    QUANTIDADE_ESTOQUE_NEGATIVA("A quantidade a ser retirada é maior que a quantidade do estoque", BAD_REQUEST, FALSE),
+
     ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE);
 
     private final String mensagem;

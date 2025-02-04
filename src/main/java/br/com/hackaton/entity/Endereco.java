@@ -1,6 +1,7 @@
 package br.com.hackaton.entity;
 
 import br.com.hackaton.controller.request.EnderecoRequest;
+import br.com.hackaton.controller.response.EnderecoResponse;
 import br.com.hackaton.exception.ExceptionAdvice;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,6 +45,20 @@ public class Endereco extends BaseEntity {
 
     public Endereco() {}
 
+    public Endereco(Long id, String cep, String logradouro, String numero, String complemento, String bairro,
+                    String cidade, String estado, String latitude, String longitude) {
+        super(id);
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = validaBairro(bairro);
+        this.cidade = validaCidade(cidade);
+        this.estado = validaEstado(estado);
+        this.latitude = validaLatitude(latitude);
+        this.longitude = validaLongitude(longitude);
+    }
+
     public Endereco(String cep, String logradouro, String numero, String complemento, String bairro,
                    String cidade, String estado, String latitude, String longitude) {
 
@@ -63,9 +78,9 @@ public class Endereco extends BaseEntity {
                 request.estado(), request.latitude(), request.longitude());
     }
 
-    public Endereco(Endereco endereco) {
-        this(endereco.getCep(), endereco.getLogradouro(), endereco.getNumero(), endereco.getComplemento(), endereco.getBairro(),
-                endereco.getCidade(), endereco.getEstado(), endereco.getLatitude(), endereco.getLongitude());
+    public Endereco(EnderecoResponse enderecoResponse) {
+        this(enderecoResponse.getId(), enderecoResponse.getCep(), enderecoResponse.getLogradouro(), enderecoResponse.getNumero(), enderecoResponse.getComplemento(), enderecoResponse.getBairro(),
+                enderecoResponse.getCidade(), enderecoResponse.getEstado(), enderecoResponse.getLatitude(), enderecoResponse.getLongitude());
     }
 
     private String validaLongitude(String longitude) {
