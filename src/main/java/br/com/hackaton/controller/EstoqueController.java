@@ -25,7 +25,7 @@ public class EstoqueController {
     }
 
     @PostMapping
-    public void cria(@RequestBody EstoqueRequest request) {
+    public void criar(@RequestBody EstoqueRequest request) {
 
         estoqueService.cria(request);
     }

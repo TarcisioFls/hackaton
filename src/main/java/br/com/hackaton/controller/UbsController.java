@@ -29,7 +29,7 @@ public class UbsController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public void cria(@RequestBody UbsRequest request) {
+    public void criar(@RequestBody UbsRequest request) {
 
         ubsService.cria(request);
 

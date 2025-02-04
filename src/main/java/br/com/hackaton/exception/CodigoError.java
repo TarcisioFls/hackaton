@@ -34,6 +34,11 @@ public enum CodigoError {
     QUANTIDADE_ADICIONADA_ESTOQUE_NEGATIVA("A quantidade a ser adicionada deve ser maior que zero", BAD_REQUEST, FALSE),
     QUANTIDADE_ESTOQUE_NEGATIVA("A quantidade a ser retirada é maior que a quantidade do estoque", BAD_REQUEST, FALSE),
 
+    CNS_PACIENTE_OBRIGATORIO("CNS do paciente é obrigatório", BAD_REQUEST, FALSE),
+    TELEFONE_PACIENTE_OBRIGATORIO("Telefone do paciente é obrigatório", BAD_REQUEST, FALSE),
+    CPF_PACIENTE_OBRIGATORIO("CPF do paciente é obrigatório", BAD_REQUEST, FALSE),
+    NOME_PACIENTE_OBRIGATORIO("Nome do paciente é obrigatório", BAD_REQUEST, FALSE),
+
     ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE);
 
     private final String mensagem;
