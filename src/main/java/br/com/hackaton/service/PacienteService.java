@@ -10,4 +10,6 @@ public interface PacienteService {
     void criar(PacienteRequest request);
 
     Page<PacienteResponse> buscarTodos(int page, int size);
+
+    PacienteResponse buscarPorId(Long id);
 }

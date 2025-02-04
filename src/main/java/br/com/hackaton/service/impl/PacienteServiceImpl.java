@@ -3,11 +3,14 @@ package br.com.hackaton.service.impl;
 import br.com.hackaton.controller.request.PacienteRequest;
 import br.com.hackaton.controller.response.PacienteResponse;
 import br.com.hackaton.entity.Paciente;
+import br.com.hackaton.exception.ExceptionAdvice;
 import br.com.hackaton.repository.PacienteRepository;
 import br.com.hackaton.service.PacienteService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import static br.com.hackaton.exception.CodigoError.PACIENTE_NAO_ENCONTRADO;
 
 @Service
 public class PacienteServiceImpl implements PacienteService {
@@ -34,5 +37,13 @@ public class PacienteServiceImpl implements PacienteService {
         var pacientePage = pacienteRepository.findAll(pageRequest);
 
         return pacientePage.map(PacienteResponse::new);
+    }
+
+    @Override
+    public PacienteResponse buscarPorId(Long id) {
+
+        var paciente = pacienteRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(PACIENTE_NAO_ENCONTRADO));
+
+        return new PacienteResponse(paciente);
     }
 }
