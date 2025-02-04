@@ -12,4 +12,6 @@ public interface PacienteService {
     Page<PacienteResponse> buscarTodos(int page, int size);
 
     PacienteResponse buscarPorId(Long id);
+
+    PacienteResponse atualizar(Long id, PacienteRequest request);
 }

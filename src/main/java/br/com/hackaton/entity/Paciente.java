@@ -1,17 +1,12 @@
 package br.com.hackaton.entity;
 
 import br.com.hackaton.controller.request.PacienteRequest;
-import br.com.hackaton.exception.CodigoError;
 import br.com.hackaton.exception.ExceptionAdvice;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-
-import java.util.Objects;
 
 import static br.com.hackaton.exception.CodigoError.CNS_PACIENTE_OBRIGATORIO;
 import static br.com.hackaton.exception.CodigoError.CPF_PACIENTE_OBRIGATORIO;
@@ -103,4 +98,12 @@ public class Paciente extends BaseEntity{
         return nome;
     }
 
+    public void atualiza(PacienteRequest request) {
+
+        this.nome = validaNome(request.nome());
+        this.cpf = validaCpf(request.cpf());
+        this.telefone = validaTelefone(request.telefone());
+        this.cns = validaCns(request.cns());
+        this.endereco = new Endereco(request.enderecoRequest());
+    }
 }

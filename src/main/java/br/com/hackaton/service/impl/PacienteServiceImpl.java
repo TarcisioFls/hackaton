@@ -46,4 +46,16 @@ public class PacienteServiceImpl implements PacienteService {
 
         return new PacienteResponse(paciente);
     }
+
+    @Override
+    public PacienteResponse atualizar(Long id, PacienteRequest request) {
+
+        var paciente = pacienteRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(PACIENTE_NAO_ENCONTRADO));
+
+        paciente.atualiza(request);
+
+        pacienteRepository.save(paciente);
+
+        return new PacienteResponse(paciente);
+    }
 }
