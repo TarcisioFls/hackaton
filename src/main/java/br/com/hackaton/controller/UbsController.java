@@ -46,7 +46,7 @@ public class UbsController {
     @PutMapping("/{id}")
     public ResponseEntity<UbsResponse> atualiza(@PathVariable Long id, @RequestBody UbsRequest request) {
 
-        UbsResponse ubsResponse = ubsService.atualiza(id, request);
+        var ubsResponse = ubsService.atualiza(id, request);
 
         return ResponseEntity.ok(ubsResponse);
     }
@@ -55,7 +55,7 @@ public class UbsController {
     public ResponseEntity<Page<UbsResponse>> buscarTodos(@RequestParam(defaultValue = "0") int page,
                                                          @RequestParam(defaultValue = "50") int size) {
 
-        Page<UbsResponse> ubsResponse = ubsService.buscarTodos(page, size);
+        var ubsResponse = ubsService.buscarTodos(page, size);
 
         return ResponseEntity.ok(ubsResponse);
     }
