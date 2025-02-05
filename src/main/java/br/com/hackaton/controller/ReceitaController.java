@@ -1,7 +1,11 @@
 package br.com.hackaton.controller;
 
 import br.com.hackaton.controller.request.ReceitaRequest;
+import br.com.hackaton.controller.response.ReceitaResponse;
 import br.com.hackaton.service.ReceitaService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +28,12 @@ public class ReceitaController {
     @ResponseStatus(CREATED)
     public void criar(@RequestBody ReceitaRequest request) {
         receitaService.criar(request);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ReceitaResponse> buscarPorId(@PathVariable Long id) {
+
+        return ResponseEntity.ok(receitaService.buscarPorId(id));
     }
 
 }

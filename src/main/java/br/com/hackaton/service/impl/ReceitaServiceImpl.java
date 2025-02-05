@@ -1,14 +1,18 @@
 package br.com.hackaton.service.impl;
 
 import br.com.hackaton.controller.request.ReceitaRequest;
+import br.com.hackaton.controller.response.ReceitaResponse;
 import br.com.hackaton.entity.Posologia;
 import br.com.hackaton.entity.Receita;
+import br.com.hackaton.exception.ExceptionAdvice;
 import br.com.hackaton.repository.ReceitaRepository;
 import br.com.hackaton.service.MedicamentoService;
 import br.com.hackaton.service.MedicoService;
 import br.com.hackaton.service.PacienteService;
 import br.com.hackaton.service.ReceitaService;
 import org.springframework.stereotype.Service;
+
+import static br.com.hackaton.exception.CodigoError.RECEITA_NAO_ENCONTRADA;
 
 @Service
 public class ReceitaServiceImpl implements ReceitaService {
@@ -42,6 +46,15 @@ public class ReceitaServiceImpl implements ReceitaService {
         }).toList();
 
         receita.setPosologias(posologias);
+
         receitaRepository.save(receita);
+    }
+
+    @Override
+    public ReceitaResponse buscarPorId(Long id) {
+
+        var receita = receitaRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(RECEITA_NAO_ENCONTRADA));
+
+        return new ReceitaResponse(receita);
     }
 }

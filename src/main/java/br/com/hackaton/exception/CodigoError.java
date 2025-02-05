@@ -53,7 +53,7 @@ public enum CodigoError {
 
     MEDICO_RECEITA_OBRIGATORIO("Médico da receita é obrigatório", BAD_REQUEST, FALSE),
     PACIENTE_RECEITA_OBRIGATORIO("Paciente da receita é obrigatório", BAD_REQUEST, FALSE),
-
+    RECEITA_NAO_ENCONTRADA("Receita não encontrada", NOT_FOUND, FALSE),
 
     ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE);
 
