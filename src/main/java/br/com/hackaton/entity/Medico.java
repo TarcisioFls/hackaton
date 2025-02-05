@@ -1,6 +1,7 @@
 package br.com.hackaton.entity;
 
 import br.com.hackaton.controller.request.MedicoRequest;
+import br.com.hackaton.controller.response.MedicoResponse;
 import br.com.hackaton.exception.ExceptionAdvice;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -40,7 +41,18 @@ public class Medico extends BaseEntity{
 
     public Medico() {}
 
+    public Medico(Long id, String nome, String email, String telefone, String crm, List<Especialidade> especialidades) {
+
+        super(id);
+        this.nome = validaNome(nome);
+        this.crm = validaCrm(crm);
+        this.email = validaEmail(email);
+        this.telefone = validaTelefone(telefone);
+        this.especialidades = especialidades;
+    }
+
     public Medico(String nome, String email, String telefone, String crm, List<Especialidade> especialidades) {
+
         this.nome = validaNome(nome);
         this.crm = validaCrm(crm);
         this.email = validaEmail(email);
@@ -51,6 +63,12 @@ public class Medico extends BaseEntity{
     public Medico(MedicoRequest dto){
 
         this(dto.nome(), dto.crm(), dto.email(), dto.telefone(), dto.especialidades());
+    }
+
+    public Medico(MedicoResponse medicoResponse) {
+
+        this(medicoResponse.getId(), medicoResponse.getNome(), medicoResponse.getCrm(), medicoResponse.getEmail(), medicoResponse.getTelefone(),
+                medicoResponse.getEspecialidades());
     }
 
     private String validaTelefone(String telefone) {

@@ -1,6 +1,7 @@
 package br.com.hackaton.entity;
 
 import br.com.hackaton.controller.request.PacienteRequest;
+import br.com.hackaton.controller.response.PacienteResponse;
 import br.com.hackaton.exception.ExceptionAdvice;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -66,6 +67,12 @@ public class Paciente extends BaseEntity{
 
         this(pacienteRequest.nome(), pacienteRequest.email(), pacienteRequest.cpf(), pacienteRequest.telefone(), pacienteRequest.cns(),
                 new Endereco(pacienteRequest.enderecoRequest()));
+    }
+
+    public Paciente(PacienteResponse pacienteResponse) {
+
+        this(pacienteResponse.getId(), pacienteResponse.getNome(), pacienteResponse.getEmail(), pacienteResponse.getCpf(),
+                pacienteResponse.getTelefone(), pacienteResponse.getCns(), new Endereco(pacienteResponse.getEndereco()));
     }
 
     private String validaEmail(String email) {

@@ -47,6 +47,14 @@ public enum CodigoError {
     PACIENTE_NAO_ENCONTRADO("Paciente não encontrado", NOT_FOUND, FALSE),
     EMAIL_PACIENTE_OBRIGATORIO("Email do paciente é obrigatório", BAD_REQUEST, FALSE),
 
+    QUANTIDADE_POSOLOGIA_OBRIGATORIA("Quantidade da posologia é obrigatória", BAD_REQUEST, FALSE),
+    DESCRICAO_POSOLOGIA_OBRIGATORIA("Descrição da posologia é obrigatória", BAD_REQUEST, FALSE),
+    QUANTIDADE_POSOLOGIA_MAIOR_QUE_ZERO("Quantidade da posologia deve ser maior que zero", BAD_REQUEST, FALSE),
+
+    MEDICO_RECEITA_OBRIGATORIO("Médico da receita é obrigatório", BAD_REQUEST, FALSE),
+    PACIENTE_RECEITA_OBRIGATORIO("Paciente da receita é obrigatório", BAD_REQUEST, FALSE),
+
+
     ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE);
 
     private final String mensagem;
