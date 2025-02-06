@@ -10,6 +10,8 @@ import br.com.hackaton.service.MedicamentoService;
 import br.com.hackaton.service.MedicoService;
 import br.com.hackaton.service.PacienteService;
 import br.com.hackaton.service.ReceitaService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import static br.com.hackaton.exception.CodigoError.RECEITA_NAO_ENCONTRADA;
@@ -56,5 +58,13 @@ public class ReceitaServiceImpl implements ReceitaService {
         var receita = receitaRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(RECEITA_NAO_ENCONTRADA));
 
         return new ReceitaResponse(receita);
+    }
+
+    @Override
+    public Page<ReceitaResponse> buscarTodos(int page, int size) {
+
+        var pageRequest = PageRequest.of(page, size);
+
+        return receitaRepository.findAll(pageRequest).map(ReceitaResponse::new);
     }
 }
