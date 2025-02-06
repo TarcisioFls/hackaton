@@ -83,4 +83,12 @@ public class ReceitaServiceImpl implements ReceitaService {
 
         return receitaRepository.findByPacienteId(id, pageRequest).map(ReceitaResponse::new);
     }
+
+    @Override
+    public void deletar(Long id) {
+
+        var receita = receitaRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(RECEITA_NAO_ENCONTRADA));
+
+        receitaRepository.delete(receita);
+    }
 }

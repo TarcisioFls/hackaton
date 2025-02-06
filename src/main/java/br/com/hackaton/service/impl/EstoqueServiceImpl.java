@@ -36,7 +36,7 @@ public class EstoqueServiceImpl implements EstoqueService {
     }
 
     @Override
-    public void cria(EstoqueRequest request) {
+    public void criar(EstoqueRequest request) {
 
         var medicamentoResponse = medicamentoService.buscarPorId(request.medicamentoId());
 
@@ -49,7 +49,7 @@ public class EstoqueServiceImpl implements EstoqueService {
     }
 
     @Override
-    public void adiciona(Long id, AtualizaEstoqueRequest request) {
+    public void adicionar(Long id, AtualizaEstoqueRequest request) {
 
         var estoque = estoqueRepository.findById(id).orElseThrow(
                 () -> new ExceptionAdvice(ESTOQUE_NAO_ENCONTRADO)
@@ -61,7 +61,7 @@ public class EstoqueServiceImpl implements EstoqueService {
     }
 
     @Override
-    public void retira(Long id, AtualizaEstoqueRequest request) {
+    public void retirar(Long id, AtualizaEstoqueRequest request) {
 
         var estoque = estoqueRepository.findById(id).orElseThrow(
                 () -> new ExceptionAdvice(ESTOQUE_NAO_ENCONTRADO)

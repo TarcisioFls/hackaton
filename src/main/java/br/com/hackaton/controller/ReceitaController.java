@@ -5,6 +5,7 @@ import br.com.hackaton.controller.response.ReceitaResponse;
 import br.com.hackaton.service.ReceitaService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/receita")
@@ -59,6 +61,13 @@ public class ReceitaController {
                                                                    @RequestParam(defaultValue = "50") int size) {
 
         return ResponseEntity.ok(receitaService.buscarPorPacienteId(id, page, size));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(OK)
+    public void deletar(@PathVariable Long id) {
+
+        receitaService.deletar(id);
     }
 
 }

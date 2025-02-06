@@ -7,11 +7,11 @@ import br.com.hackaton.controller.response.EstoqueUbsComQuantidadeResponse;
 
 public interface EstoqueService {
 
-    void cria(EstoqueRequest request);
+    void criar(EstoqueRequest request);
 
-    void adiciona(Long id, AtualizaEstoqueRequest request);
+    void adicionar(Long id, AtualizaEstoqueRequest request);
 
-    void retira(Long id, AtualizaEstoqueRequest request);
+    void retirar(Long id, AtualizaEstoqueRequest request);
 
     EstoqueComMedicamentoComQuantidadeListResponse buscaPorUbsId(Long ubsId);
 

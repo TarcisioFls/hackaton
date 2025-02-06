@@ -15,4 +15,6 @@ public interface ReceitaService {
     Page<ReceitaResponse> buscarPorMedicoId(Long id, int page, int size);
 
     Page<ReceitaResponse> buscarPorPacienteId(Long id, int page, int size);
+
+    void deletar(Long id);
 }

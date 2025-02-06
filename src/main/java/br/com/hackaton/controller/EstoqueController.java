@@ -27,17 +27,17 @@ public class EstoqueController {
     @PostMapping
     public void criar(@RequestBody EstoqueRequest request) {
 
-        estoqueService.cria(request);
+        estoqueService.criar(request);
     }
 
     @PatchMapping("/adiciona/{id}")
     public void adiciona(@PathVariable Long id, @RequestBody AtualizaEstoqueRequest request) {
-        estoqueService.adiciona(id, request);
+        estoqueService.adicionar(id, request);
     }
 
     @PatchMapping("/retira/{id}")
     public void retira(@PathVariable Long id, @RequestBody AtualizaEstoqueRequest request) {
-        estoqueService.retira(id, request);
+        estoqueService.retirar(id, request);
     }
 
     @GetMapping("/ubs/{ubsId}")
