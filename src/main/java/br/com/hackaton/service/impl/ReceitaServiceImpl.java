@@ -75,4 +75,12 @@ public class ReceitaServiceImpl implements ReceitaService {
 
         return receitaRepository.findByMedicoId(id, pageRequest).map(ReceitaResponse::new);
     }
+
+    @Override
+    public Page<ReceitaResponse> buscarPorPacienteId(Long id, int page, int size) {
+
+        var pageRequest = PageRequest.of(page, size);
+
+        return receitaRepository.findByPacienteId(id, pageRequest).map(ReceitaResponse::new);
+    }
 }

@@ -13,4 +13,6 @@ public interface ReceitaService {
     Page<ReceitaResponse> buscarTodos(int page, int size);
 
     Page<ReceitaResponse> buscarPorMedicoId(Long id, int page, int size);
+
+    Page<ReceitaResponse> buscarPorPacienteId(Long id, int page, int size);
 }

@@ -53,4 +53,12 @@ public class ReceitaController {
         return ResponseEntity.ok(receitaService.buscarPorMedicoId(id, page, size));
     }
 
+    @GetMapping("/paciente/{id}")
+    public ResponseEntity<Page<ReceitaResponse>> buscarPorPaciente(@PathVariable Long id,
+                                                                   @RequestParam(defaultValue = "0") int page,
+                                                                   @RequestParam(defaultValue = "50") int size) {
+
+        return ResponseEntity.ok(receitaService.buscarPorPacienteId(id, page, size));
+    }
+
 }

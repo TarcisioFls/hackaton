@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface ReceitaRepository extends JpaRepository<Receita, Long> {
 
     Page<Receita> findByMedicoId(Long id, PageRequest pageRequest);
+
+    Page<Receita> findByPacienteId(Long id, PageRequest pageRequest);
 }
