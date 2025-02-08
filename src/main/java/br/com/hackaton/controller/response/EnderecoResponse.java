@@ -28,15 +28,15 @@ public class EnderecoResponse {
 
     private String estado;
 
-    private String latitude;
+    private Double latitude;
 
-    private String longitude;
+    private Double longitude;
 
     public EnderecoResponse() {}
 
     public EnderecoResponse(Long id, LocalDateTime dataCriacao, LocalDateTime dataAtualizacao, String cep, String logradouro,
-                            String numero, String complemento, String bairro, String cidade, String estado, String latitude,
-                            String longitude) {
+                            String numero, String complemento, String bairro, String cidade, String estado, Double latitude,
+                            Double longitude) {
 
         this.id = id;
         this.dataCriacao = dataCriacao;

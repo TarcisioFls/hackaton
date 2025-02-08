@@ -22,8 +22,8 @@ public record EnderecoRequest(
         String estado,
 
         @NotBlank
-        String latitude,
+        Double latitude,
 
         @NotBlank
-        String longitude
+        Double longitude
 ) {}

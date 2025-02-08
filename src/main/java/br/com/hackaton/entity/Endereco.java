@@ -38,15 +38,15 @@ public class Endereco extends BaseEntity {
     private String estado;
 
     @Column(nullable = false)
-    private String latitude;
+    private Double latitude;
 
     @Column(nullable = false)
-    private String longitude;
+    private Double longitude;
 
     public Endereco() {}
 
     public Endereco(Long id, String cep, String logradouro, String numero, String complemento, String bairro,
-                    String cidade, String estado, String latitude, String longitude) {
+                    String cidade, String estado, Double latitude, Double longitude) {
         super(id);
         this.cep = cep;
         this.logradouro = logradouro;
@@ -60,7 +60,7 @@ public class Endereco extends BaseEntity {
     }
 
     public Endereco(String cep, String logradouro, String numero, String complemento, String bairro,
-                   String cidade, String estado, String latitude, String longitude) {
+                    String cidade, String estado, Double latitude, Double longitude) {
 
         this.cep = cep;
         this.logradouro = logradouro;
@@ -83,18 +83,18 @@ public class Endereco extends BaseEntity {
                 enderecoResponse.getCidade(), enderecoResponse.getEstado(), enderecoResponse.getLatitude(), enderecoResponse.getLongitude());
     }
 
-    private String validaLongitude(String longitude) {
+    private Double validaLongitude(Double longitude) {
 
-        if (isNull(longitude) || longitude.isBlank()) {
+        if (isNull(longitude)) {
             throw new ExceptionAdvice(LONGITUDE_ENDERECO_OBRIGATORIO);
         }
 
         return longitude;
     }
 
-    private String validaLatitude(String latitude) {
+    private Double validaLatitude(Double latitude) {
 
-        if (isNull(latitude) || latitude.isBlank()) {
+        if (isNull(latitude)) {
             throw new ExceptionAdvice(LATITUDE_ENDERECO_OBRIGATORIO);
         }
 

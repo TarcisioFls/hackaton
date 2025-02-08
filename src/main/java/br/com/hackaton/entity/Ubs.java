@@ -11,6 +11,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import static br.com.hackaton.exception.CodigoError.FIM_ATENDIMENTO_UBS_OBRIGATORIO;
@@ -119,5 +120,13 @@ public class Ubs extends BaseEntity {
         this.inicioAtendimento = validaInicioAtendimento(request.inicioAtendimento());
         this.fimAtendimento = validaFimAtendimento(request.fimAtendimento());
         this.endereco.atualiza(request.endereco());
+    }
+
+    public boolean temMedicamentoDisponivel(Medicamento medicamento, BigInteger quantidade) {
+        return estoque.stream()
+                .filter(e -> e.getMedicamento().equals(medicamento))
+                .map(Estoque::getQuantidade)
+                .reduce(BigInteger.ZERO, BigInteger::add)
+                .compareTo(quantidade) >= 0;
     }
 }

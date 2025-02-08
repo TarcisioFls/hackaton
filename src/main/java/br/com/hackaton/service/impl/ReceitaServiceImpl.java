@@ -53,6 +53,12 @@ public class ReceitaServiceImpl implements ReceitaService {
     }
 
     @Override
+    public Receita buscaEntidadePorId(Long id) {
+        return receitaRepository.findById(id)
+                .orElseThrow(() -> new ExceptionAdvice(RECEITA_NAO_ENCONTRADA));
+    }
+
+    @Override
     public ReceitaResponse buscarPorId(Long id) {
 
         var receita = receitaRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(RECEITA_NAO_ENCONTRADA));

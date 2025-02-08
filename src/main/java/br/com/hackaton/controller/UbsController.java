@@ -1,6 +1,7 @@
 package br.com.hackaton.controller;
 
 import br.com.hackaton.controller.request.UbsRequest;
+import br.com.hackaton.controller.response.UbsComMedicamentoResponse;
 import br.com.hackaton.controller.response.UbsResponse;
 import br.com.hackaton.service.UbsService;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -58,6 +61,12 @@ public class UbsController {
         var ubsResponse = ubsService.buscarTodos(page, size);
 
         return ResponseEntity.ok(ubsResponse);
+    }
+
+    @GetMapping("/receita/{receitaId}")
+    public ResponseEntity<List<UbsComMedicamentoResponse>> encontrarUbsProximasDePacienteComMedicamentos(@PathVariable Long receitaId) {
+        return ResponseEntity.ok(ubsService.encontrarUbsProximasDePacienteComMedicamentos(receitaId));
+
     }
 
 }
