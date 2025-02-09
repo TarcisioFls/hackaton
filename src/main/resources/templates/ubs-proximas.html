@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBS Próximas com Medicamentos Disponíveis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 75%;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            border-left: 15px solid #075e8d;
+        }
+
+        .header {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .ubs-list {
+            margin-top: 20px;
+        }
+
+        .ubs-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 8px solid #075e8d;
+        }
+
+        .ubs-item h2 {
+            margin-bottom: 10px;
+            color: #075e8d;
+        }
+
+        .info p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .medicamentos {
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #e9ecef;
+            font-weight: 600;
+            color: #333;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="header">UBS Próximas com Medicamentos Disponíveis</h1>
+    <div class="ubs-list">
+        <div class="ubs-item">
+            <h2><span>{{ubs.nome}}</span></h2>
+            <p><strong>Endereço:</strong> <span>{{ubs.endereco}}</span></p>
+            <p><strong>Telefone:</strong> <span>{{ubs.telefone}}</span></p>
+            <p><strong>Distância:</strong> <span>{{ubs.distancia}}</span> km</p>
+
+            <div class="medicamentos">
+                <h3>Medicamentos Disponíveis</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tarja</th>
+                        <th>SKU</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span>{{medicamento.nome}}</span></td>
+                        <td><span>{{medicamento.tarja}}</span></td>
+                        <td><span>{{medicamento.sku}}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

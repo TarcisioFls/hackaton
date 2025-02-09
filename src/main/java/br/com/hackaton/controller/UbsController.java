@@ -66,7 +66,11 @@ public class UbsController {
     @GetMapping("/receita/{receitaId}")
     public ResponseEntity<List<UbsComMedicamentoResponse>> encontrarUbsProximasDePacienteComMedicamentos(@PathVariable Long receitaId) {
         return ResponseEntity.ok(ubsService.encontrarUbsProximasDePacienteComMedicamentos(receitaId));
+    }
 
+    @PostMapping("/receita/{receitaId}/enviar-email")
+    public void enviarEmailUbsProximasDePacienteComMedicamentos(@PathVariable Long receitaId) {
+        ubsService.enviarEmailUbsProximasDePacienteComMedicamentos(receitaId);
     }
 
 }

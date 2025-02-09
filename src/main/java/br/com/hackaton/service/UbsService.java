@@ -18,4 +18,6 @@ public interface UbsService {
     Page<UbsResponse> buscarTodos(int page, int size);
 
     List<UbsComMedicamentoResponse> encontrarUbsProximasDePacienteComMedicamentos(Long receitaId);
+
+    void enviarEmailUbsProximasDePacienteComMedicamentos(Long receitaId);
 }
