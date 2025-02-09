@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -21,31 +22,39 @@ public class UbsParserServiceImpl implements UbsParserService {
         var ubsItemTemplate = ubsListElement.selectFirst(".ubs-item").clone();
         ubsListElement.empty();
 
+        var ubsMap = new HashMap<String, UbsComMedicamentoResponse>();
         for (var response : ubsComMedicamentoResponseList) {
+            ubsMap.putIfAbsent(response.getNome(), response);
+        }
+
+        for (var ubsEntry : ubsMap.values()) {
             var ubsItem = ubsItemTemplate.clone();
 
-            ubsItem.select("span:contains({{ubs.nome}})").first().text(response.getNome());
+            ubsItem.select("span:contains({{ubs.nome}})").first().text(ubsEntry.getNome());
             ubsItem.select("span:contains({{ubs.endereco}})").first().text(
-                    response.getEndereco().getLogradouro() + ", " +
-                            response.getEndereco().getNumero() + ", " +
-                            response.getEndereco().getBairro() + ", " +
-                            response.getEndereco().getCidade() + " - " +
-                            response.getEndereco().getEstado()
+                    ubsEntry.getEndereco().getLogradouro() + ", " +
+                            ubsEntry.getEndereco().getNumero() + ", " +
+                            ubsEntry.getEndereco().getBairro() + ", " +
+                            ubsEntry.getEndereco().getCidade() + " - " +
+                            ubsEntry.getEndereco().getEstado()
             );
-            ubsItem.select("span:contains({{ubs.telefone}})").first().text(response.getTelefone());
-            ubsItem.select("span:contains({{ubs.distancia}})").first().text(df.format(response.getDistancia()));
+            ubsItem.select("span:contains({{ubs.telefone}})").first().text(ubsEntry.getTelefone());
+            ubsItem.select("span:contains({{ubs.distancia}})").first().text(df.format(ubsEntry.getDistancia()));
 
             var medicamentoTableBody = ubsItem.selectFirst("tbody");
             var medicamentoRowTemplate = medicamentoTableBody.selectFirst("tr").clone();
             medicamentoTableBody.empty();
 
-            var medicamento = response.getMedicamento();
-            var row = medicamentoRowTemplate.clone();
-            row.select("span:contains({{medicamento.nome}})").first().text(medicamento.getNome());
-            row.select("span:contains({{medicamento.tarja}})").first().text(medicamento.getTarja().toString());
-            row.select("span:contains({{medicamento.sku}})").first().text(medicamento.getSku());
+            for (var response : ubsComMedicamentoResponseList) {
+                if (response.getNome().equals(ubsEntry.getNome())) {
+                    var row = medicamentoRowTemplate.clone();
+                    row.select("span:contains({{medicamento.nome}})").first().text(response.getMedicamento().getNome());
+                    row.select("span:contains({{medicamento.tarja}})").first().text(response.getMedicamento().getTarja().toString());
+                    row.select("span:contains({{medicamento.sku}})").first().text(response.getMedicamento().getSku());
+                    medicamentoTableBody.appendChild(row);
+                }
+            }
 
-            medicamentoTableBody.appendChild(row);
             ubsListElement.appendChild(ubsItem);
         }
 

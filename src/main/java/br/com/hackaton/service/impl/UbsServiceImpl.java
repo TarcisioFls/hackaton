@@ -102,7 +102,7 @@ public class UbsServiceImpl implements UbsService {
         var pacienteEndereco = receita.getPaciente().getEndereco();
         var latitude = pacienteEndereco.getLatitude();
         var longitude = pacienteEndereco.getLongitude();
-        return receita.getPosologias().parallelStream()
+        return receita.getPosologias().stream()
                 .flatMap(posologia -> buscarUbsProximasComMedicamento(latitude, longitude, posologia))
                 .collect(Collectors.toMap(response ->
                         response.getMedicamento().getId(),
