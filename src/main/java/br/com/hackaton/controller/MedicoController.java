@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("medico")
+@RequestMapping("medicos")
 public class MedicoController {
 
     private final MedicoService medicoService;
