@@ -8,5 +8,5 @@ import org.mapstruct.MappingConstants;
         componentModel = MappingConstants.ComponentModel.SPRING,
         injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
-public class MappingConfig {
+public interface MappingConfig {
 }

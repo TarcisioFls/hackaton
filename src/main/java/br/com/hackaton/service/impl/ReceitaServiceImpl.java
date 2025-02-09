@@ -6,14 +6,19 @@ import br.com.hackaton.entity.Posologia;
 import br.com.hackaton.entity.Receita;
 import br.com.hackaton.exception.ExceptionAdvice;
 import br.com.hackaton.repository.ReceitaRepository;
+import br.com.hackaton.service.EmailService;
 import br.com.hackaton.service.MedicamentoService;
 import br.com.hackaton.service.MedicoService;
 import br.com.hackaton.service.PacienteService;
+import br.com.hackaton.service.ReceitaParserService;
 import br.com.hackaton.service.ReceitaService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
+import static br.com.hackaton.exception.CodigoError.ERRO_AO_PROCESSAR_RECEITA_HTML;
 import static br.com.hackaton.exception.CodigoError.RECEITA_NAO_ENCONTRADA;
 
 @Service
@@ -21,14 +26,20 @@ public class ReceitaServiceImpl implements ReceitaService {
 
     private final ReceitaRepository receitaRepository;
 
+    private final ReceitaParserService receitaParserService;
+
+    private final EmailService emailService;
+
     private final MedicoService medicoService;
 
     private final PacienteService pacienteService;
 
     private final MedicamentoService medicamentoService;
 
-    public ReceitaServiceImpl(ReceitaRepository receitaRepository, MedicoService medicoService, PacienteService pacienteService, MedicamentoService medicamentoService) {
+    public ReceitaServiceImpl(ReceitaRepository receitaRepository, ReceitaParserService receitaParserService, EmailService emailService, MedicoService medicoService, PacienteService pacienteService, MedicamentoService medicamentoService) {
         this.receitaRepository = receitaRepository;
+        this.receitaParserService = receitaParserService;
+        this.emailService = emailService;
         this.medicoService = medicoService;
         this.pacienteService = pacienteService;
         this.medicamentoService = medicamentoService;
@@ -61,7 +72,7 @@ public class ReceitaServiceImpl implements ReceitaService {
     @Override
     public ReceitaResponse buscarPorId(Long id) {
 
-        var receita = receitaRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(RECEITA_NAO_ENCONTRADA));
+        var receita = buscaReceitaPorId(id);
 
         return new ReceitaResponse(receita);
     }
@@ -93,8 +104,26 @@ public class ReceitaServiceImpl implements ReceitaService {
     @Override
     public void deletar(Long id) {
 
-        var receita = receitaRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(RECEITA_NAO_ENCONTRADA));
+        var receita = buscaReceitaPorId(id);
 
         receitaRepository.delete(receita);
+    }
+
+    @Override
+    public void enviarEmail(Long id) {
+        try {
+            var receita = buscaReceitaPorId(id);
+            emailService.enviarEmail(
+                    receita.getPaciente().getEmail(),
+                    "RECEITA DIGITAL UBS",
+                    receitaParserService.parseReceitaHtml(receita)
+            );
+        } catch (IOException e) {
+            throw new ExceptionAdvice(ERRO_AO_PROCESSAR_RECEITA_HTML);
+        }
+    }
+
+    private Receita buscaReceitaPorId(Long id) {
+        return receitaRepository.findById(id).orElseThrow(() -> new ExceptionAdvice(RECEITA_NAO_ENCONTRADA));
     }
 }

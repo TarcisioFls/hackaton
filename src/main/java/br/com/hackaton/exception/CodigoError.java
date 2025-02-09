@@ -55,7 +55,9 @@ public enum CodigoError {
     PACIENTE_RECEITA_OBRIGATORIO("Paciente da receita é obrigatório", BAD_REQUEST, FALSE),
     RECEITA_NAO_ENCONTRADA("Receita não encontrada", NOT_FOUND, FALSE),
 
-    ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE);
+    ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE),
+
+    ERRO_AO_PROCESSAR_RECEITA_HTML("Erro ao processar receita HTML", INTERNAL_SERVER_ERROR, TRUE);
 
     private final String mensagem;
 

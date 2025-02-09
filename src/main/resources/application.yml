@@ -9,5 +9,20 @@ spring:
     username: user
     password: admin
   jpa:
+    defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
+  sql:
+    init:
+      mode: always
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 2525
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

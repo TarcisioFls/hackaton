@@ -20,4 +20,6 @@ public interface ReceitaService {
     Page<ReceitaResponse> buscarPorPacienteId(Long id, int page, int size);
 
     void deletar(Long id);
+
+    void enviarEmail(Long id);
 }

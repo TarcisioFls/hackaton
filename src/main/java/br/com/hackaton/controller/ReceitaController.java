@@ -70,4 +70,10 @@ public class ReceitaController {
         receitaService.deletar(id);
     }
 
+    @PostMapping("/{id}/enviar-email")
+    @ResponseStatus(OK)
+    public void enviar(@PathVariable Long id) {
+        receitaService.enviarEmail(id);
+    }
+
 }
