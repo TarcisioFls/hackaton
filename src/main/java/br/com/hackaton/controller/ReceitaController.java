@@ -19,7 +19,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/receita")
+@RequestMapping("/receitas")
 public class ReceitaController {
 
     private final ReceitaService receitaService;

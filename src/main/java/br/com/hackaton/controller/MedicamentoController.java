@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping("/medicamento")
+@RequestMapping("/medicamentos")
 public class MedicamentoController {
 
     private final MedicamentoService medicamentoService;
