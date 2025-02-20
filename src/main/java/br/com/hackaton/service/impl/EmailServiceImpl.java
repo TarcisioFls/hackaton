@@ -19,7 +19,7 @@ public class EmailServiceImpl implements EmailService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            helper.setFrom("mailtrap@mailtrap.teste.com");
+            helper.setFrom("hello@demomailtrap.com");
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(htmlContent, true);

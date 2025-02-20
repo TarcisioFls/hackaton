@@ -10,7 +10,6 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f4f7fc;
             margin: 0;
-            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,7 +17,7 @@
         }
 
         .container {
-            width: 75%;
+            max-width: 800px;
             background: #fff;
             padding: 25px;
             border-radius: 12px;
@@ -35,17 +34,12 @@
             margin-bottom: 20px;
         }
 
-        .ubs-list {
-            margin-top: 20px;
-        }
-
         .ubs-item {
             background: #f8f9fa;
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            /*border-left: 8px solid #075e8d;*/
         }
 
         .ubs-item h2 {
@@ -63,26 +57,53 @@
             margin-top: 15px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 12px;
+        .med-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        th, td {
+        .med-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
             padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #e9ecef;
-            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 500;
             color: #333;
         }
 
-        tr:last-child td {
-            border-bottom: none;
+        .med-icon {
+            width: 30px;
+            height: 30px;
+            background: #075e8d;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .med-item {
+                flex-direction: column;
+                align-items: flex-start;
+                p {
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                }
+            }
+
+            .med-icon {
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
@@ -98,22 +119,12 @@
 
             <div class="medicamentos">
                 <h3>Medicamentos Disponíveis</h3>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Tarja</th>
-                        <th>SKU</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><span>{{medicamento.nome}}</span></td>
-                        <td><span>{{medicamento.tarja}}</span></td>
-                        <td><span>{{medicamento.sku}}</span></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <ul class="med-list">
+                    <li class="med-item">
+                        <div class="med-icon">💊</div>
+                        <p><span>{{medicamento.nome}}, </span><span>{{medicamento.tarja}}, </span><span>{{medicamento.sku}}</span></p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

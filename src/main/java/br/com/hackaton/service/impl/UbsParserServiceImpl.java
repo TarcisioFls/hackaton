@@ -41,17 +41,17 @@ public class UbsParserServiceImpl implements UbsParserService {
             ubsItem.select("span:contains({{ubs.telefone}})").first().text(ubsEntry.getTelefone());
             ubsItem.select("span:contains({{ubs.distancia}})").first().text(df.format(ubsEntry.getDistancia()));
 
-            var medicamentoTableBody = ubsItem.selectFirst("tbody");
-            var medicamentoRowTemplate = medicamentoTableBody.selectFirst("tr").clone();
-            medicamentoTableBody.empty();
+            var medicamentoList = ubsItem.selectFirst(".med-list");
+            var medicamentoItem = medicamentoList.selectFirst(".med-item").clone();
+            medicamentoList.empty();
 
             for (var response : ubsComMedicamentoResponseList) {
                 if (response.getNome().equals(ubsEntry.getNome())) {
-                    var row = medicamentoRowTemplate.clone();
-                    row.select("span:contains({{medicamento.nome}})").first().text(response.getMedicamento().getNome());
-                    row.select("span:contains({{medicamento.tarja}})").first().text(response.getMedicamento().getTarja().toString());
-                    row.select("span:contains({{medicamento.sku}})").first().text(response.getMedicamento().getSku());
-                    medicamentoTableBody.appendChild(row);
+                    var medItem = medicamentoItem.clone();
+                    medItem.select("span:contains({{medicamento.nome}})").first().text(response.getMedicamento().getNome() + ", ");
+                    medItem.select("span:contains({{medicamento.tarja}})").first().text(response.getMedicamento().getTarja().toString() + ", ");
+                    medItem.select("span:contains({{medicamento.sku}})").first().text(response.getMedicamento().getSku());
+                    medicamentoList.appendChild(medItem);
                 }
             }
 

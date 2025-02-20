@@ -26,7 +26,7 @@ INSERT INTO medico_especialidades (medico_id, especialidades) VALUES
 
 -- Create Paciente
 INSERT INTO paciente (id, nome, email, cpf, telefone, cns, endereco_id) VALUES
-(1, 'Jane Smith', 'jane.smith@email.com', '123.456.789-00', '987-654-3210', '123456789012345', 2);
+(1, 'Jane Smith', 'henrique.geenen.postech@gmail.com', '123.456.789-00', '987-654-3210', '123456789012345', 2);
 
 -- Create Receita
 INSERT INTO receita (id, medico_id, paciente_id, data_hora_criacao) VALUES
@@ -34,10 +34,10 @@ INSERT INTO receita (id, medico_id, paciente_id, data_hora_criacao) VALUES
 
 -- Create Medicamento
 INSERT INTO medicamento (id, nome, tarja, sku) VALUES
-(1, 'Paracetamol', 'VERMELHA', 'PAR-2023-10-01T12:00:00'),
-(2, 'Amoxicillin', 'AMARELA', 'AMO-2023-10-01T12:00:00'),
-(3, 'Ibuprofen', 'PRETA', 'IBU-2023-10-01T12:00:00'),
-(4, 'Omeprazole', 'VERMELHA', 'OME-2023-10-01T12:00:00');
+(1, 'Paracetamol', 'VERMELHA', 'PAR-2023-10-01'),
+(2, 'Amoxicillin', 'AMARELA', 'AMO-2023-10-01'),
+(3, 'Ibuprofen', 'PRETA', 'IBU-2023-10-01'),
+(4, 'Omeprazole', 'VERMELHA', 'OME-2023-10-01');
 
 -- Create Posologia
 INSERT INTO posologia (id, medicamento_id, receita_id, descricao, quantidade) VALUES
