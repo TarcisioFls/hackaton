@@ -3,6 +3,8 @@ package br.com.hackaton.controller;
 import br.com.hackaton.controller.request.MedicamentoRequest;
 import br.com.hackaton.controller.response.MedicamentoResponse;
 import br.com.hackaton.service.MedicamentoService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,18 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/medicamentos")
 public class MedicamentoController {
 
     private final MedicamentoService medicamentoService;
 
-    public MedicamentoController(MedicamentoService medicamentoService) {
-        this.medicamentoService = medicamentoService;
-    }
-
     @PostMapping
     @ResponseStatus(CREATED)
-    public void criar(@RequestBody MedicamentoRequest request) {
+    public void criar(@Valid @RequestBody MedicamentoRequest request) {
         medicamentoService.cria(request);
     }
 
@@ -41,7 +40,7 @@ public class MedicamentoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MedicamentoResponse> atualiza(@PathVariable Long id, @RequestBody MedicamentoRequest request) {
+    public ResponseEntity<MedicamentoResponse> atualiza(@PathVariable Long id, @Valid @RequestBody MedicamentoRequest request) {
         var medicamentoResponse = medicamentoService.atualiza(id, request);
 
         return ResponseEntity.ok(medicamentoResponse);

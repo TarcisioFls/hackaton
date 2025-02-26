@@ -1,12 +1,18 @@
 package br.com.hackaton.controller.response;
 
 import br.com.hackaton.entity.Receita;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReceitaResponse {
 
     private Long id;
@@ -18,8 +24,6 @@ public class ReceitaResponse {
     private MedicoResponse medico;
 
     private PacienteResponse paciente;
-
-    public ReceitaResponse() {}
 
     public ReceitaResponse(Receita receita) {
 

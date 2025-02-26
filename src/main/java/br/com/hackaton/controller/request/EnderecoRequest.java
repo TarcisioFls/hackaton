@@ -1,7 +1,9 @@
 package br.com.hackaton.controller.request;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 
+@Builder
 public record EnderecoRequest(
 
         String cep,

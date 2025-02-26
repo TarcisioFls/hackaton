@@ -1,11 +1,13 @@
 package br.com.hackaton.controller.response;
 
 import br.com.hackaton.entity.Endereco;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 public class EnderecoResponse {
 
     private Long id;

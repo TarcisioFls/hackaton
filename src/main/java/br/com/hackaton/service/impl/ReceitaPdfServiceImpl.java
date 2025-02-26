@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import static br.com.hackaton.exception.CodigoError.ERROR_DESCONHECIDO;
 import static com.lowagie.text.Element.ALIGN_CENTER;
@@ -30,7 +31,7 @@ public class ReceitaPdfServiceImpl implements ReceitaPdfService {
     }
 
     @Override
-    public byte[] downloadPdf(Long id) {
+    public Optional<byte[]> downloadPdf(Long id) {
 
         var receitaResponse = receitaService.buscarPorId(id);
         try {
@@ -61,7 +62,7 @@ public class ReceitaPdfServiceImpl implements ReceitaPdfService {
 
             document.close();
 
-            return baos.toByteArray();
+            return Optional.ofNullable(baos.toByteArray());
         } catch (Exception e) {
 
             log.error("Erro ao gerar pdf", e);

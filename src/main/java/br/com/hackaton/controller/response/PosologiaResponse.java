@@ -1,11 +1,13 @@
 package br.com.hackaton.controller.response;
 
 import br.com.hackaton.entity.Posologia;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
+@Builder
 public class PosologiaResponse {
 
     private String descricao;

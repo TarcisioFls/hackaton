@@ -1,6 +1,7 @@
 package br.com.hackaton.controller.response;
 
 import br.com.hackaton.entity.Tarja;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.math.BigInteger;
 
 @Getter
 @Setter
+@Builder
 public class MedicamentoComQuantidadeResponse {
 
     private Long id;

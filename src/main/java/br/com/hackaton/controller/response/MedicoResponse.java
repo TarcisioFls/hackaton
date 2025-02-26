@@ -2,12 +2,16 @@ package br.com.hackaton.controller.response;
 
 import br.com.hackaton.entity.Especialidade;
 import br.com.hackaton.entity.Medico;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.With;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@With
 @Getter
+@Builder
 public class MedicoResponse {
 
     private Long id;

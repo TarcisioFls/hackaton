@@ -2,11 +2,17 @@ package br.com.hackaton.controller.response;
 
 import br.com.hackaton.entity.Medicamento;
 import br.com.hackaton.entity.Tarja;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MedicamentoResponse {
 
     private Long id;
@@ -15,8 +21,6 @@ public class MedicamentoResponse {
     private String sku;
     private LocalDateTime dataCriacao;
 
-    public MedicamentoResponse() {}
-
     public MedicamentoResponse(Medicamento medicamento) {
 
         this.id = medicamento.getId();
@@ -24,14 +28,5 @@ public class MedicamentoResponse {
         this.tarja = medicamento.getTarja();
         this.sku = medicamento.getSku();
         this.dataCriacao = medicamento.getDataHoraCriacao();
-    }
-
-    public MedicamentoResponse(MedicamentoResponse medicamentoResponse) {
-
-        this.id = medicamentoResponse.getId();
-        this.nome = medicamentoResponse.getNome();
-        this.tarja = medicamentoResponse.getTarja();
-        this.sku = medicamentoResponse.getSku();
-        this.dataCriacao = medicamentoResponse.getDataCriacao();
     }
 }

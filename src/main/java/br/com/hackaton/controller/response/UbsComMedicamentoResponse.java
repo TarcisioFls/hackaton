@@ -3,8 +3,10 @@ package br.com.hackaton.controller.response;
 import br.com.hackaton.entity.Medicamento;
 import br.com.hackaton.entity.Ubs;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
+@SuperBuilder
 public class UbsComMedicamentoResponse extends UbsResponse {
 
     private final Double distancia;

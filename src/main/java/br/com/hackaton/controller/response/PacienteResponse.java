@@ -1,9 +1,15 @@
 package br.com.hackaton.controller.response;
 
 import br.com.hackaton.entity.Paciente;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PacienteResponse {
 
     private Long id;
@@ -19,19 +25,6 @@ public class PacienteResponse {
     private String cns;
 
     private EnderecoResponse endereco;
-
-    public PacienteResponse() {}
-
-    public PacienteResponse(Long id, String nome, String email, String cpf, String telefone, String cns, EnderecoResponse endereco) {
-
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.cns = cns;
-        this.endereco = endereco;
-    }
 
     public PacienteResponse(Paciente paciente) {
 

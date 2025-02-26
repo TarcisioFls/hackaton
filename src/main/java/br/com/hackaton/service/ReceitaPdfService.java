@@ -1,5 +1,7 @@
 package br.com.hackaton.service;
 
+import java.util.Optional;
+
 public interface ReceitaPdfService {
-    byte[] downloadPdf(Long id);
+    Optional<byte[]> downloadPdf(Long id);
 }
