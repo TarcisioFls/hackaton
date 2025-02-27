@@ -79,6 +79,7 @@ public class EstoqueUtils {
 
     public static Estoque buildEstoque() {
         return Estoque.builder()
+                .id(1L)
                 .quantidade(BigInteger.ONE)
                 .medicamento(MedicamentoUtils.buildMedicamento())
                 .build();

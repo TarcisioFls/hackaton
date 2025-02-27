@@ -7,6 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.With;
 import lombok.experimental.SuperBuilder;
 
 import static br.com.hackaton.exception.CodigoError.BAIRRO_ENDERECO_OBRIGATORIO;
@@ -16,6 +17,7 @@ import static br.com.hackaton.exception.CodigoError.LATITUDE_ENDERECO_OBRIGATORI
 import static br.com.hackaton.exception.CodigoError.LONGITUDE_ENDERECO_OBRIGATORIO;
 import static java.util.Objects.isNull;
 
+@With
 @Getter
 @Entity
 @SuperBuilder

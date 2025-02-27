@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.With;
 import lombok.experimental.SuperBuilder;
 
 import static br.com.hackaton.exception.CodigoError.CNS_PACIENTE_OBRIGATORIO;
@@ -18,6 +19,7 @@ import static br.com.hackaton.exception.CodigoError.TELEFONE_PACIENTE_OBRIGATORI
 import static jakarta.persistence.CascadeType.ALL;
 import static java.util.Objects.isNull;
 
+@With
 @Getter
 @Entity
 @SuperBuilder

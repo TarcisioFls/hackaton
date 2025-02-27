@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.With;
 import lombok.experimental.SuperBuilder;
 
 import static br.com.hackaton.exception.CodigoError.DESCRICAO_POSOLOGIA_OBRIGATORIA;
@@ -28,7 +29,7 @@ public class Posologia extends BaseEntity {
     private Integer quantidade;
 
     @ManyToOne
-    @JoinColumn(name = "medicamento_id", unique = false)
+    @JoinColumn(name = "medicamento_id")
     private Medicamento medicamento;
 
     @ManyToOne
@@ -36,23 +37,15 @@ public class Posologia extends BaseEntity {
 
     public Posologia() {}
 
-    public Posologia(String descricao, Integer quantidade, Medicamento medicamento) {
-
-        this.descricao = validaDescricao(descricao);
-        this.quantidade = validaQualidade(quantidade);
-        this.medicamento = medicamento;
-
-    }
-
     public Posologia(String descricao, Integer quantidade, MedicamentoResponse medicamentoResponse, Receita receita) {
 
         this.descricao = validaDescricao(descricao);
-        this.quantidade = validaQualidade(quantidade);
+        this.quantidade = validaQuantidade(quantidade);
         this.medicamento = new Medicamento(medicamentoResponse);
         this.receita = receita;
     }
 
-    private @NotNull Integer validaQualidade(Integer quantidade) {
+    private @NotNull Integer validaQuantidade(Integer quantidade) {
 
         if (quantidade == null) {
             throw new ExceptionAdvice(QUANTIDADE_POSOLOGIA_OBRIGATORIA);
