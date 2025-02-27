@@ -3,14 +3,17 @@ package br.com.hackaton.controller;
 import br.com.hackaton.controller.request.PacienteRequest;
 import br.com.hackaton.exception.ExceptionAdviceHandler;
 import br.com.hackaton.service.PacienteService;
-import br.com.hackaton.utils.PacienteUtils;
+import br.com.hackaton.utilsTest.PacienteUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
@@ -23,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-public class PacienteControllerTest {
+class PacienteControllerTest {
 
     private static final String BASE_URL = "/pacientes";
     private static final String BUSCA_POR_ID_URL = BASE_URL + "/{id}";
@@ -108,6 +111,22 @@ public class PacienteControllerTest {
                             .contentType(APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isBadRequest());
+        }
+    }
+
+    @Nested
+    class BuscarTodosPaginado {
+        @Test
+        void deveBuscarTodosPacientesPaginado() throws Exception {
+            // Given
+            var response = new PageImpl<>(List.of(PacienteUtils.buildPacienteResponse()));
+
+            when(service.buscarTodos(0, 10)).thenReturn(response);
+
+            // When & Then
+            mockMvc.perform(get(BASE_URL)
+                            .contentType(APPLICATION_JSON))
+                    .andExpect(status().isOk());
         }
     }
 

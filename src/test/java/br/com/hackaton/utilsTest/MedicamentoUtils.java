@@ -1,7 +1,8 @@
-package br.com.hackaton.utils;
+package br.com.hackaton.utilsTest;
 
 import br.com.hackaton.controller.request.MedicamentoRequest;
 import br.com.hackaton.controller.response.MedicamentoResponse;
+import br.com.hackaton.entity.Medicamento;
 import br.com.hackaton.entity.Tarja;
 
 public class MedicamentoUtils {
@@ -22,6 +23,14 @@ public class MedicamentoUtils {
                 .nome("Dipirona")
                 .tarja(Tarja.AMARELA)
                 .sku("123456")
+                .build();
+    }
+
+    public static Medicamento buildMedicamento() {
+        return Medicamento.builder()
+                .nome("Dipirona")
+                .tarja(Tarja.PRETA)
+                .sku("sku")
                 .build();
     }
 }

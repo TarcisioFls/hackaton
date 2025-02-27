@@ -1,12 +1,12 @@
-package br.com.hackaton.utils;
+package br.com.hackaton.utilsTest;
 
 import br.com.hackaton.controller.request.AtualizaEstoqueRequest;
 import br.com.hackaton.controller.request.EstoqueRequest;
-import br.com.hackaton.controller.response.EnderecoResponse;
 import br.com.hackaton.controller.response.EstoqueComMedicamentoComQuantidadeListResponse;
 import br.com.hackaton.controller.response.EstoqueUbsComQuantidadeResponse;
 import br.com.hackaton.controller.response.MedicamentoComQuantidadeResponse;
 import br.com.hackaton.controller.response.UbsComQuantidadeResponse;
+import br.com.hackaton.entity.Estoque;
 import br.com.hackaton.entity.Tarja;
 
 import java.math.BigInteger;
@@ -77,5 +77,10 @@ public class EstoqueUtils {
     }
 
 
-
+    public static Estoque buildEstoque() {
+        return Estoque.builder()
+                .quantidade(BigInteger.ONE)
+                .medicamento(MedicamentoUtils.buildMedicamento())
+                .build();
+    }
 }

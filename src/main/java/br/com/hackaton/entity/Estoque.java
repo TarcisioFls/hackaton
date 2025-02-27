@@ -7,14 +7,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.With;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigInteger;
 
 import static br.com.hackaton.exception.CodigoError.QUANTIDADE_ADICIONADA_ESTOQUE_NEGATIVA;
 import static br.com.hackaton.exception.CodigoError.QUANTIDADE_ESTOQUE_NEGATIVA;
 
+@With
 @Getter
 @Entity
+@SuperBuilder
 @Table(name = "estoque")
 public class Estoque extends BaseEntity {
 

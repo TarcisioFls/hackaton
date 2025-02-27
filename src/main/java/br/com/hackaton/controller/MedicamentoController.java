@@ -33,25 +33,19 @@ public class MedicamentoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MedicamentoResponse> lista(@PathVariable Long id) {
-        var medicamentoResponse = medicamentoService.buscarPorId(id);
-
-        return ResponseEntity.ok(medicamentoResponse);
+    public ResponseEntity<MedicamentoResponse> buscaPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(medicamentoService.buscarPorId(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<MedicamentoResponse> atualiza(@PathVariable Long id, @Valid @RequestBody MedicamentoRequest request) {
-        var medicamentoResponse = medicamentoService.atualiza(id, request);
-
-        return ResponseEntity.ok(medicamentoResponse);
+        return ResponseEntity.ok(medicamentoService.atualiza(id, request));
     }
 
     @GetMapping
-    public ResponseEntity<Page<MedicamentoResponse>> lista(@RequestParam(defaultValue = "0") int page,
-                                                           @RequestParam(defaultValue = "50") int size) {
-        var medicamentoResponse = medicamentoService.buscarTodos(page, size);
-
-        return ResponseEntity.ok(medicamentoResponse);
+    public ResponseEntity<Page<MedicamentoResponse>> listaPaginado(@RequestParam(defaultValue = "0") int page,
+                                                                   @RequestParam(defaultValue = "50") int size) {
+        return ResponseEntity.ok(medicamentoService.buscarTodos(page, size));
     }
 
 }

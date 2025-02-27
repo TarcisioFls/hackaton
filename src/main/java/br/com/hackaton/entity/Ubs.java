@@ -11,6 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -23,6 +24,7 @@ import static java.util.Objects.isNull;
 
 @Getter
 @Entity
+@SuperBuilder
 @Table(name = "ubs")
 public class Ubs extends BaseEntity {
 

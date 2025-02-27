@@ -14,6 +14,7 @@ import br.com.hackaton.repository.EstoqueRepository;
 import br.com.hackaton.service.EstoqueService;
 import br.com.hackaton.service.MedicamentoService;
 import br.com.hackaton.service.UbsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
 import static br.com.hackaton.exception.CodigoError.ESTOQUE_NAO_ENCONTRADO;
 
 @Service
+@RequiredArgsConstructor
 public class EstoqueServiceImpl implements EstoqueService {
 
     private final EstoqueRepository estoqueRepository;
@@ -28,12 +30,6 @@ public class EstoqueServiceImpl implements EstoqueService {
     private final MedicamentoService medicamentoService;
 
     private final UbsService ubsService;
-
-    public EstoqueServiceImpl(EstoqueRepository estoqueRepository, MedicamentoService medicamentoService, UbsService ubsService) {
-        this.estoqueRepository = estoqueRepository;
-        this.medicamentoService = medicamentoService;
-        this.ubsService = ubsService;
-    }
 
     @Override
     public void criar(EstoqueRequest request) {
@@ -76,7 +72,7 @@ public class EstoqueServiceImpl implements EstoqueService {
     public EstoqueComMedicamentoComQuantidadeListResponse buscaPorUbsId(Long ubsId) {
 
         var estoqueList = estoqueRepository.findByUbsId(ubsId).orElseThrow(
-                () -> new ExceptionAdvice(CodigoError.ESTOQUE_NAO_ENCONTRADO)
+                () -> new ExceptionAdvice(ESTOQUE_NAO_ENCONTRADO)
         );
 
         var estoqueUbsResponse = getEstoqueUbsResponse(estoqueList);

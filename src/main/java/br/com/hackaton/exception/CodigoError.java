@@ -57,7 +57,9 @@ public enum CodigoError {
     ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE),
 
     ERRO_AO_PROCESSAR_RECEITA_HTML("Erro ao processar receita HTML", INTERNAL_SERVER_ERROR, TRUE),
-    ERRO_AO_PROCESSAR_UBS_PROXIMAS_COM_MEDICAMENTO("Erro ao processar UBS próximas com medicamento", INTERNAL_SERVER_ERROR, TRUE);
+    ERRO_AO_PROCESSAR_UBS_PROXIMAS_COM_MEDICAMENTO("Erro ao processar UBS próximas com medicamento", INTERNAL_SERVER_ERROR, TRUE),
+
+    ERRO_AO_ENVIAR_EMAIL("Erro ao enviar email", INTERNAL_SERVER_ERROR, TRUE);
 
     private final String mensagem;
 

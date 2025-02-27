@@ -39,8 +39,8 @@ public class MedicoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<MedicoResponse>> buscarTodos(@RequestParam(defaultValue = "0") int page,
-                                                            @RequestParam(defaultValue = "50")int size) {
+    public ResponseEntity<Page<MedicoResponse>> buscarTodosPaginado(@RequestParam(defaultValue = "0") int page,
+                                                                    @RequestParam(defaultValue = "50")int size) {
         return ResponseEntity.ok(medicoService.buscarTodos(page, size));
     }
 

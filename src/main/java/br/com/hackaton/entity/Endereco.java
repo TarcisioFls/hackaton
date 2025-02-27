@@ -7,6 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import static br.com.hackaton.exception.CodigoError.BAIRRO_ENDERECO_OBRIGATORIO;
 import static br.com.hackaton.exception.CodigoError.CIDADE_ENDERECO_OBRIGATORIO;
@@ -17,6 +18,7 @@ import static java.util.Objects.isNull;
 
 @Getter
 @Entity
+@SuperBuilder
 @Table(name = "endereco")
 public class Endereco extends BaseEntity {
 

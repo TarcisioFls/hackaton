@@ -6,6 +6,7 @@ import br.com.hackaton.entity.Paciente;
 import br.com.hackaton.exception.ExceptionAdvice;
 import br.com.hackaton.repository.PacienteRepository;
 import br.com.hackaton.service.PacienteService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,13 +14,10 @@ import org.springframework.stereotype.Service;
 import static br.com.hackaton.exception.CodigoError.PACIENTE_NAO_ENCONTRADO;
 
 @Service
+@RequiredArgsConstructor
 public class PacienteServiceImpl implements PacienteService {
 
     private final PacienteRepository pacienteRepository;
-
-    public PacienteServiceImpl(PacienteRepository pacienteRepository) {
-        this.pacienteRepository = pacienteRepository;
-    }
 
     @Override
     public void criar(PacienteRequest request) {

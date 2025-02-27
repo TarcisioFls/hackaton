@@ -1,6 +1,8 @@
 package br.com.hackaton.entity;
 
-public enum Tarja {
+import java.io.Serializable;
+
+public enum Tarja implements Serializable {
     PRETA,
     VERMELHA,
     AMARELA,

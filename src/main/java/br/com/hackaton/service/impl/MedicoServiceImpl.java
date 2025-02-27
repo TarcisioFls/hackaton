@@ -6,6 +6,7 @@ import br.com.hackaton.entity.Medico;
 import br.com.hackaton.exception.ExceptionAdvice;
 import br.com.hackaton.repository.MedicoRepository;
 import br.com.hackaton.service.MedicoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,14 +14,10 @@ import org.springframework.stereotype.Service;
 import static br.com.hackaton.exception.CodigoError.MEDICO_NAO_ENCONTRADO;
 
 @Service
+@RequiredArgsConstructor
 public class MedicoServiceImpl implements MedicoService {
 
-
     private final MedicoRepository medicoRepository;
-
-    public MedicoServiceImpl(MedicoRepository medicoRepository) {
-        this.medicoRepository = medicoRepository;
-    }
 
     @Override
     public void criar(MedicoRequest request) {

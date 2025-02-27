@@ -6,6 +6,7 @@ import br.com.hackaton.entity.Medicamento;
 import br.com.hackaton.exception.ExceptionAdvice;
 import br.com.hackaton.repository.MedicamentoRepository;
 import br.com.hackaton.service.MedicamentoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -14,13 +15,10 @@ import static br.com.hackaton.exception.CodigoError.MEDICAMENTO_JA_CADASTRADO;
 import static br.com.hackaton.exception.CodigoError.MEDICAMENTO_NAO_ENCONTRADO;
 
 @Service
+@RequiredArgsConstructor
 public class MedicamentoServiceImpl implements MedicamentoService {
 
     private final MedicamentoRepository medicamentoRepository;
-
-    public MedicamentoServiceImpl(MedicamentoRepository medicamentoRepository) {
-        this.medicamentoRepository = medicamentoRepository;
-    }
 
     @Override
     public void cria(MedicamentoRequest request) {

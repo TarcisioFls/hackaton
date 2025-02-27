@@ -34,6 +34,7 @@ import static br.com.hackaton.exception.CodigoError.UBS_NAO_ENCONTRADA;
 public class UbsServiceImpl implements UbsService {
 
     public static final double DISTANCIA_MAXIMA = 500.0;
+
     private final EmailService emailService;
     private final UbsParserService ubsParserService;
     private final ReceitaService receitaService;

@@ -3,16 +3,20 @@ package br.com.hackaton.controller;
 import br.com.hackaton.controller.request.MedicamentoRequest;
 import br.com.hackaton.exception.ExceptionAdviceHandler;
 import br.com.hackaton.service.MedicamentoService;
-import br.com.hackaton.utils.MedicamentoUtils;
+import br.com.hackaton.utilsTest.MedicamentoUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.List;
+
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -23,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-public class MedicamentoControllerTest {
+class MedicamentoControllerTest {
 
     private static final String BASE_URL = "/medicamentos";
     private static final String BUSCA_POR_ID_URL = BASE_URL + "/{id}";

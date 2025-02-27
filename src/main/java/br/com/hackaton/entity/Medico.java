@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import static java.util.Objects.isNull;
 
 @Getter
 @Entity
+@SuperBuilder
 @Table(name = "medico")
 public class Medico extends BaseEntity{
 

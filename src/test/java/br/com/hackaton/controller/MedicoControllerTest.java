@@ -3,14 +3,17 @@ package br.com.hackaton.controller;
 import br.com.hackaton.controller.request.MedicoRequest;
 import br.com.hackaton.exception.ExceptionAdviceHandler;
 import br.com.hackaton.service.MedicoService;
-import br.com.hackaton.utils.MedicoUtils;
+import br.com.hackaton.utilsTest.MedicoUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
@@ -24,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-public class MedicoControllerTest {
+class MedicoControllerTest {
 
     private static final String BASE_URL = "/medicos";
     private static final String BUSCA_POR_ID_URL = BASE_URL + "/{id}";
@@ -113,7 +116,7 @@ public class MedicoControllerTest {
     }
 
     @Nested
-    class BuscaPorId {
+    class BuscarPorId {
         @Test
         void deveBuscarMedicoPorId() throws Exception {
             // Given
@@ -123,6 +126,22 @@ public class MedicoControllerTest {
 
             // When & Then
             mockMvc.perform(get(BUSCA_POR_ID_URL, 1L)
+                            .contentType(APPLICATION_JSON))
+                    .andExpect(status().isOk());
+        }
+    }
+
+    @Nested
+    class BuscarTodosPaginado {
+        @Test
+        void deveBuscarTodosMedicosPaginado() throws Exception {
+            // Given
+            var response = new PageImpl<>(List.of(MedicoUtils.buildMedicoResponse()));
+
+            when(service.buscarTodos(0, 10)).thenReturn(response);
+
+            // When & Then
+            mockMvc.perform(get(BASE_URL)
                             .contentType(APPLICATION_JSON))
                     .andExpect(status().isOk());
         }

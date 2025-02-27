@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import static br.com.hackaton.exception.CodigoError.CNS_PACIENTE_OBRIGATORIO;
 import static br.com.hackaton.exception.CodigoError.CPF_PACIENTE_OBRIGATORIO;
@@ -19,6 +20,7 @@ import static java.util.Objects.isNull;
 
 @Getter
 @Entity
+@SuperBuilder
 @Table(name = "paciente")
 public class Paciente extends BaseEntity{
 

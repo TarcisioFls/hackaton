@@ -1,10 +1,12 @@
-package br.com.hackaton.utils;
+package br.com.hackaton.utilsTest;
 
 import br.com.hackaton.controller.request.PosologiaRequest;
 import br.com.hackaton.controller.request.ReceitaRequest;
 import br.com.hackaton.controller.response.PosologiaResponse;
 import br.com.hackaton.controller.response.ReceitaResponse;
+import br.com.hackaton.entity.Receita;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ReceitaUtils {
@@ -14,7 +16,7 @@ public class ReceitaUtils {
 
     public static ReceitaRequest buildReceitaRequest() {
         return ReceitaRequest.builder()
-                .posologias(List.of(buildPosologiaRequest()))
+                .posologias(List.of(PosologiaUtils.buildPosologiaRequest()))
                 .medicoId(1L)
                 .pacienteId(1L)
                 .build();
@@ -23,25 +25,20 @@ public class ReceitaUtils {
     public static ReceitaResponse buildReceitaResponse() {
         return ReceitaResponse.builder()
                 .id(1L)
-                .posologias(List.of(buildPosologiaResponse()))
+                .dataCriacao(LocalDateTime.MAX)
+                .posologias(List.of(PosologiaUtils.buildPosologiaResponse()))
                 .medico(MedicoUtils.buildMedicoResponse())
                 .paciente(PacienteUtils.buildPacienteResponse())
                 .build();
     }
 
-    public static PosologiaRequest buildPosologiaRequest() {
-        return PosologiaRequest.builder()
-                .medicamentoId(1L)
-                .quantidade(1)
-                .descricao("descricao")
-                .build();
-    }
-
-    public static PosologiaResponse buildPosologiaResponse() {
-        return PosologiaResponse.builder()
-                .descricao("descricao")
-                .quantidade(1)
-                .medicamento(MedicamentoUtils.buildMedicamentoResponse())
+    public static Receita buildReceita() {
+        return Receita.builder()
+                .id(1L)
+                .posologias(List.of(PosologiaUtils.buildPosologia()))
+                .medico(MedicoUtils.buildMedico())
+                .paciente(PacienteUtils.buildPaciente())
+                .dataHoraCriacao(LocalDateTime.MAX)
                 .build();
     }
 }

@@ -3,7 +3,7 @@ package br.com.hackaton.controller;
 import br.com.hackaton.controller.request.UbsRequest;
 import br.com.hackaton.exception.ExceptionAdviceHandler;
 import br.com.hackaton.service.UbsService;
-import br.com.hackaton.utils.UbsUtils;
+import br.com.hackaton.utilsTest.UbsUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-public class UbsControllerTest {
+class UbsControllerTest {
 
     private static final String BASE_URL = "/ubs";
     private static final String BUSCA_POR_ID_URL = BASE_URL + "/{id}";

@@ -12,6 +12,7 @@ import br.com.hackaton.service.MedicoService;
 import br.com.hackaton.service.PacienteService;
 import br.com.hackaton.service.ReceitaParserService;
 import br.com.hackaton.service.ReceitaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -22,28 +23,15 @@ import static br.com.hackaton.exception.CodigoError.ERRO_AO_PROCESSAR_RECEITA_HT
 import static br.com.hackaton.exception.CodigoError.RECEITA_NAO_ENCONTRADA;
 
 @Service
+@RequiredArgsConstructor
 public class ReceitaServiceImpl implements ReceitaService {
 
     private final ReceitaRepository receitaRepository;
-
     private final ReceitaParserService receitaParserService;
-
     private final EmailService emailService;
-
     private final MedicoService medicoService;
-
     private final PacienteService pacienteService;
-
     private final MedicamentoService medicamentoService;
-
-    public ReceitaServiceImpl(ReceitaRepository receitaRepository, ReceitaParserService receitaParserService, EmailService emailService, MedicoService medicoService, PacienteService pacienteService, MedicamentoService medicamentoService) {
-        this.receitaRepository = receitaRepository;
-        this.receitaParserService = receitaParserService;
-        this.emailService = emailService;
-        this.medicoService = medicoService;
-        this.pacienteService = pacienteService;
-        this.medicamentoService = medicamentoService;
-    }
 
     @Override
     public void criar(ReceitaRequest request) {

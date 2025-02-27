@@ -1,8 +1,11 @@
-package br.com.hackaton.utils;
+package br.com.hackaton.utilsTest;
 
 import br.com.hackaton.controller.request.UbsRequest;
 import br.com.hackaton.controller.response.UbsComMedicamentoResponse;
 import br.com.hackaton.controller.response.UbsResponse;
+import br.com.hackaton.entity.Ubs;
+
+import java.util.List;
 
 public class UbsUtils {
 
@@ -39,6 +42,17 @@ public class UbsUtils {
                 .fimAtendimento("fimAtendimento")
                 .distancia(1.0)
                 .medicamento(MedicamentoUtils.buildMedicamentoResponse())
+                .build();
+    }
+
+    public static Ubs buildUbs() {
+        return Ubs.builder()
+                .nome("nome")
+                .telefone("telefone")
+                .inicioAtendimento("inicioAtendimento")
+                .fimAtendimento("fimAtendimento")
+                .endereco(EnderecoUtils.buildEndereco())
+                .estoque(List.of(EstoqueUtils.buildEstoque()))
                 .build();
     }
 }

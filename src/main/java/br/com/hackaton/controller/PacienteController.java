@@ -35,7 +35,6 @@ public class PacienteController {
     @GetMapping
     public ResponseEntity<Page<PacienteResponse>> buscarTodos(@RequestParam(defaultValue = "0") int page,
                                                               @RequestParam(defaultValue = "50") int size) {
-
         return ResponseEntity.ok(pacienteService.buscarTodos(page, size));
     }
 

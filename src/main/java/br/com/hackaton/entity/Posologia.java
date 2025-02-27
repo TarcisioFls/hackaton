@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import static br.com.hackaton.exception.CodigoError.DESCRICAO_POSOLOGIA_OBRIGATORIA;
 import static br.com.hackaton.exception.CodigoError.QUANTIDADE_POSOLOGIA_MAIOR_QUE_ZERO;
@@ -16,6 +17,7 @@ import static br.com.hackaton.exception.CodigoError.QUANTIDADE_POSOLOGIA_OBRIGAT
 
 @Getter
 @Entity
+@SuperBuilder
 @Table(name = "posologia")
 public class Posologia extends BaseEntity {
 

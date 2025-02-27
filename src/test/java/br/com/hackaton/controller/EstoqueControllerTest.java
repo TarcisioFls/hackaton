@@ -3,7 +3,7 @@ package br.com.hackaton.controller;
 import br.com.hackaton.controller.request.EstoqueRequest;
 import br.com.hackaton.exception.ExceptionAdviceHandler;
 import br.com.hackaton.service.EstoqueService;
-import br.com.hackaton.utils.EstoqueUtils;
+import br.com.hackaton.utilsTest.EstoqueUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-public class EstoqueControllerTest {
+class EstoqueControllerTest {
 
     private static final String BASE_URL = "/estoques";
     private static final String ADICIONA_URL = BASE_URL + "/adiciona/{id}";

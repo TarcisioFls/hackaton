@@ -11,6 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import static br.com.hackaton.exception.CodigoError.PACIENTE_RECEITA_OBRIGATORIO
 
 @Getter
 @Entity
+@SuperBuilder
 @Table(name = "receita")
 public class Receita extends BaseEntity {
 

@@ -7,6 +7,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +23,13 @@ import static com.lowagie.text.PageSize.A4;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ReceitaPdfServiceImpl implements ReceitaPdfService {
 
     private final ReceitaService receitaService;
 
-    public ReceitaPdfServiceImpl(ReceitaService receitaService) {
-        this.receitaService = receitaService;
-    }
-
     @Override
     public Optional<byte[]> downloadPdf(Long id) {
-
         var receitaResponse = receitaService.buscarPorId(id);
         try {
             var document = new Document(A4);
@@ -62,9 +59,8 @@ public class ReceitaPdfServiceImpl implements ReceitaPdfService {
 
             document.close();
 
-            return Optional.ofNullable(baos.toByteArray());
+            return Optional.of(baos.toByteArray());
         } catch (Exception e) {
-
             log.error("Erro ao gerar pdf", e);
             throw new ExceptionAdvice(ERROR_DESCONHECIDO);
         }
