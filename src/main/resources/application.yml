@@ -20,7 +20,7 @@ spring:
     init:
       mode: always
   mail:
-    host: live.smtp.mailtrap.io
+    host: sandbox.smtp.mailtrap.io
     port: 2525
     username:
     password:
