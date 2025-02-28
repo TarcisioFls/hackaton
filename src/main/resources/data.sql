@@ -44,8 +44,10 @@ INSERT INTO medicamento (id, nome, tarja, sku) VALUES
 
 -- Create Posologia
 INSERT INTO posologia (id, medicamento_id, receita_id, descricao, quantidade) VALUES
-(1, 1, 1, 'Take one tablet every 6 hours', 10),
-(2, 2, 1, 'Take one capsule every 8 hours', 15);
+(1, 1, 1, 'Tomar uma capsula a cada 8 horas', 10),
+(2, 2, 1, 'Tomar uma capsula a cada 6 horas', 15),
+(3, 3, 2, 'Tomar uma capsula a cada 4 horas', 20),
+(4, 4, 2, 'Tomar uma capsula a cada 12 horas', 5);
 
 -- Create Estoque
 INSERT INTO estoque (id, medicamento_id, ubs_id, quantidade) VALUES
