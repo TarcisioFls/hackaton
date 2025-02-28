@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     defer-datasource-initialization: true
     properties:
       hibernate:
@@ -20,10 +20,10 @@ spring:
     init:
       mode: always
   mail:
-    host: live.smtp.mailtrap.io
+    host: sandbox.smtp.mailtrap.io
     port: 2525
-    username:
-    password:
+    username: d69b8b4924627b
+    password: 7c45be750f01cd
     properties:
       mail:
         smtp:
