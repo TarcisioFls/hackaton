@@ -41,7 +41,11 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
     jpa:
         hibernate:
-        ddl-auto: create-drop
+            ddl-auto: create-drop
+        defer-datasource-initialization: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
 ```
 
 Para ambiente de testes, o banco **H2** será utilizado automaticamente.
