@@ -8,10 +8,12 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
 @Getter
+@SuperBuilder
 @MappedSuperclass
 public class BaseEntity {
 
@@ -24,6 +26,13 @@ public class BaseEntity {
 
     @Column(name = "data_hora_atualizacao")
     private LocalDateTime dataHoraAtualizacao;
+
+    public BaseEntity() {}
+
+    public BaseEntity(Long id) {
+
+        this.id = id;
+    }
 
     @PrePersist
     public void prePersist() {

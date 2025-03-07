@@ -1,11 +1,13 @@
 package br.com.hackaton.controller.response;
 
 import br.com.hackaton.entity.Endereco;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 public class EnderecoResponse {
 
     private Long id;
@@ -28,15 +30,15 @@ public class EnderecoResponse {
 
     private String estado;
 
-    private String latitude;
+    private Double latitude;
 
-    private String longitude;
+    private Double longitude;
 
     public EnderecoResponse() {}
 
     public EnderecoResponse(Long id, LocalDateTime dataCriacao, LocalDateTime dataAtualizacao, String cep, String logradouro,
-                            String numero, String complemento, String bairro, String cidade, String estado, String latitude,
-                            String longitude) {
+                            String numero, String complemento, String bairro, String cidade, String estado, Double latitude,
+                            Double longitude) {
 
         this.id = id;
         this.dataCriacao = dataCriacao;
@@ -56,6 +58,13 @@ public class EnderecoResponse {
         this(endereco.getId(), endereco.getDataHoraCriacao(), endereco.getDataHoraAtualizacao(), endereco.getCep(),
              endereco.getLogradouro(), endereco.getNumero(), endereco.getComplemento(), endereco.getBairro(),
              endereco.getCidade(), endereco.getEstado(), endereco.getLatitude(), endereco.getLongitude());
+    }
+
+    public EnderecoResponse(EnderecoResponse enderecoResponse) {
+        this(enderecoResponse.getId(), enderecoResponse.getDataCriacao(), enderecoResponse.getDataAtualizacao(),
+             enderecoResponse.getCep(), enderecoResponse.getLogradouro(), enderecoResponse.getNumero(),
+             enderecoResponse.getComplemento(), enderecoResponse.getBairro(), enderecoResponse.getCidade(),
+             enderecoResponse.getEstado(), enderecoResponse.getLatitude(), enderecoResponse.getLongitude());
     }
 
 }

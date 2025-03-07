@@ -1,13 +1,20 @@
 package br.com.hackaton.entity;
 
 import br.com.hackaton.controller.request.UbsRequest;
+import br.com.hackaton.controller.response.UbsResponse;
 import br.com.hackaton.exception.ExceptionAdvice;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+
+import java.math.BigInteger;
+import java.util.List;
 
 import static br.com.hackaton.exception.CodigoError.FIM_ATENDIMENTO_UBS_OBRIGATORIO;
 import static br.com.hackaton.exception.CodigoError.INICIO_ATENDIMENTO_UBS_OBRIGATORIO;
@@ -17,6 +24,7 @@ import static java.util.Objects.isNull;
 
 @Getter
 @Entity
+@SuperBuilder
 @Table(name = "ubs")
 public class Ubs extends BaseEntity {
 
@@ -35,7 +43,21 @@ public class Ubs extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
+    @OneToMany(mappedBy = "ubs", fetch = FetchType.EAGER)
+    private List<Estoque> estoque;
+
     public Ubs() {}
+
+    public Ubs(Long id, String nome, String telefone, String inicioAtendimento, String fimAtendimento, Endereco endereco) {
+
+        super(id);
+        this.nome = validaNome(nome);
+        this.telefone = validaTelefone(telefone);
+        this.inicioAtendimento = validaInicioAtendimento(inicioAtendimento);
+        this.fimAtendimento = validaFimAtendimento(fimAtendimento);
+        this.endereco = endereco;
+
+    }
 
     public Ubs(String nome, String telefone, String inicioAtendimento, String fimAtendimento, Endereco endereco) {
 
@@ -50,6 +72,12 @@ public class Ubs extends BaseEntity {
 
         this(request.nome(), request.telefone(), request.inicioAtendimento(), request.fimAtendimento(),
                 new Endereco(request.endereco()));
+    }
+
+    public Ubs(UbsResponse ubsResponse) {
+
+        this(ubsResponse.getId(), ubsResponse.getNome(), ubsResponse.getTelefone(), ubsResponse.getInicioAtendimento(),
+                ubsResponse.getFimAtendimento(), new Endereco(ubsResponse.getEndereco()));
     }
 
     private String validaFimAtendimento(String fimAtendimento) {
@@ -95,5 +123,13 @@ public class Ubs extends BaseEntity {
         this.inicioAtendimento = validaInicioAtendimento(request.inicioAtendimento());
         this.fimAtendimento = validaFimAtendimento(request.fimAtendimento());
         this.endereco.atualiza(request.endereco());
+    }
+
+    public boolean temMedicamentoDisponivel(Medicamento medicamento, BigInteger quantidade) {
+        return estoque.stream()
+                .filter(e -> e.getMedicamento().equals(medicamento))
+                .map(Estoque::getQuantidade)
+                .reduce(BigInteger.ZERO, BigInteger::add)
+                .compareTo(quantidade) >= 0;
     }
 }

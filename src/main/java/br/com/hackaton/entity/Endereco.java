@@ -1,11 +1,14 @@
 package br.com.hackaton.entity;
 
 import br.com.hackaton.controller.request.EnderecoRequest;
+import br.com.hackaton.controller.response.EnderecoResponse;
 import br.com.hackaton.exception.ExceptionAdvice;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.With;
+import lombok.experimental.SuperBuilder;
 
 import static br.com.hackaton.exception.CodigoError.BAIRRO_ENDERECO_OBRIGATORIO;
 import static br.com.hackaton.exception.CodigoError.CIDADE_ENDERECO_OBRIGATORIO;
@@ -14,8 +17,10 @@ import static br.com.hackaton.exception.CodigoError.LATITUDE_ENDERECO_OBRIGATORI
 import static br.com.hackaton.exception.CodigoError.LONGITUDE_ENDERECO_OBRIGATORIO;
 import static java.util.Objects.isNull;
 
+@With
 @Getter
 @Entity
+@SuperBuilder
 @Table(name = "endereco")
 public class Endereco extends BaseEntity {
 
@@ -37,15 +42,29 @@ public class Endereco extends BaseEntity {
     private String estado;
 
     @Column(nullable = false)
-    private String latitude;
+    private Double latitude;
 
     @Column(nullable = false)
-    private String longitude;
+    private Double longitude;
 
     public Endereco() {}
 
+    public Endereco(Long id, String cep, String logradouro, String numero, String complemento, String bairro,
+                    String cidade, String estado, Double latitude, Double longitude) {
+        super(id);
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = validaBairro(bairro);
+        this.cidade = validaCidade(cidade);
+        this.estado = validaEstado(estado);
+        this.latitude = validaLatitude(latitude);
+        this.longitude = validaLongitude(longitude);
+    }
+
     public Endereco(String cep, String logradouro, String numero, String complemento, String bairro,
-                   String cidade, String estado, String latitude, String longitude) {
+                    String cidade, String estado, Double latitude, Double longitude) {
 
         this.cep = cep;
         this.logradouro = logradouro;
@@ -63,23 +82,23 @@ public class Endereco extends BaseEntity {
                 request.estado(), request.latitude(), request.longitude());
     }
 
-    public Endereco(Endereco endereco) {
-        this(endereco.getCep(), endereco.getLogradouro(), endereco.getNumero(), endereco.getComplemento(), endereco.getBairro(),
-                endereco.getCidade(), endereco.getEstado(), endereco.getLatitude(), endereco.getLongitude());
+    public Endereco(EnderecoResponse enderecoResponse) {
+        this(enderecoResponse.getId(), enderecoResponse.getCep(), enderecoResponse.getLogradouro(), enderecoResponse.getNumero(), enderecoResponse.getComplemento(), enderecoResponse.getBairro(),
+                enderecoResponse.getCidade(), enderecoResponse.getEstado(), enderecoResponse.getLatitude(), enderecoResponse.getLongitude());
     }
 
-    private String validaLongitude(String longitude) {
+    private Double validaLongitude(Double longitude) {
 
-        if (isNull(longitude) || longitude.isBlank()) {
+        if (isNull(longitude)) {
             throw new ExceptionAdvice(LONGITUDE_ENDERECO_OBRIGATORIO);
         }
 
         return longitude;
     }
 
-    private String validaLatitude(String latitude) {
+    private Double validaLatitude(Double latitude) {
 
-        if (isNull(latitude) || latitude.isBlank()) {
+        if (isNull(latitude)) {
             throw new ExceptionAdvice(LATITUDE_ENDERECO_OBRIGATORIO);
         }
 

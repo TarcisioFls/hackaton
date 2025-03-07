@@ -2,22 +2,27 @@ package br.com.hackaton.controller.response;
 
 import br.com.hackaton.entity.Medicamento;
 import br.com.hackaton.entity.Tarja;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.math.BigInteger;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Getter
-public class MedicamentoResponse {
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class MedicamentoResponse implements Serializable {
 
     private Long id;
     private String nome;
     private Tarja tarja;
     private String sku;
-    private BigInteger quantidade;
     private LocalDateTime dataCriacao;
-
-    public MedicamentoResponse() {}
 
     public MedicamentoResponse(Medicamento medicamento) {
 
@@ -25,7 +30,6 @@ public class MedicamentoResponse {
         this.nome = medicamento.getNome();
         this.tarja = medicamento.getTarja();
         this.sku = medicamento.getSku();
-        this.quantidade = medicamento.getQuantidade();
         this.dataCriacao = medicamento.getDataHoraCriacao();
     }
 }

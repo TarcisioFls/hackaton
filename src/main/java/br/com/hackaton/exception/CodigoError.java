@@ -30,7 +30,36 @@ public enum CodigoError {
     LATITUDE_ENDERECO_OBRIGATORIO("Latitude do endereço é obrigatório", BAD_REQUEST, FALSE),
     LONGITUDE_ENDERECO_OBRIGATORIO("Longitude do endereço é obrigatório", BAD_REQUEST, FALSE),
 
-    ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE);
+    NOME_MEDICO_OBRIGATORIO("Nome do medico é obrigatório", BAD_REQUEST, FALSE),
+    CRM_MEDICO_OBRIGATORIO("CRM do medico é obrigatório", BAD_REQUEST, FALSE),
+    EMAIL_MEDICO_OBRIGATORIO("Email do medico é obrigatório", BAD_REQUEST, FALSE),
+    TELEFONE_MEDICO_OBRIGATORIO("Telefone do medico é obrigatório", BAD_REQUEST, FALSE),
+    MEDICO_NAO_ENCONTRADO("Medico não encontrado", NOT_FOUND, FALSE),
+
+    ESTOQUE_NAO_ENCONTRADO("Estoque não encontrado", NOT_FOUND, FALSE),
+    QUANTIDADE_ADICIONADA_ESTOQUE_NEGATIVA("A quantidade a ser adicionada deve ser maior que zero", BAD_REQUEST, FALSE),
+    QUANTIDADE_ESTOQUE_NEGATIVA("A quantidade a ser retirada é maior que a quantidade do estoque", BAD_REQUEST, FALSE),
+
+    CNS_PACIENTE_OBRIGATORIO("CNS do paciente é obrigatório", BAD_REQUEST, FALSE),
+    TELEFONE_PACIENTE_OBRIGATORIO("Telefone do paciente é obrigatório", BAD_REQUEST, FALSE),
+    CPF_PACIENTE_OBRIGATORIO("CPF do paciente é obrigatório", BAD_REQUEST, FALSE),
+    NOME_PACIENTE_OBRIGATORIO("Nome do paciente é obrigatório", BAD_REQUEST, FALSE),
+    PACIENTE_NAO_ENCONTRADO("Paciente não encontrado", NOT_FOUND, FALSE),
+    EMAIL_PACIENTE_OBRIGATORIO("Email do paciente é obrigatório", BAD_REQUEST, FALSE),
+
+    QUANTIDADE_POSOLOGIA_OBRIGATORIA("Quantidade da posologia é obrigatória", BAD_REQUEST, FALSE),
+    DESCRICAO_POSOLOGIA_OBRIGATORIA("Descrição da posologia é obrigatória", BAD_REQUEST, FALSE),
+    QUANTIDADE_POSOLOGIA_MAIOR_QUE_ZERO("Quantidade da posologia deve ser maior que zero", BAD_REQUEST, FALSE),
+
+    MEDICO_RECEITA_OBRIGATORIO("Médico da receita é obrigatório", BAD_REQUEST, FALSE),
+    PACIENTE_RECEITA_OBRIGATORIO("Paciente da receita é obrigatório", BAD_REQUEST, FALSE),
+    RECEITA_NAO_ENCONTRADA("Receita não encontrada", NOT_FOUND, FALSE),
+    ERROR_DESCONHECIDO("Erro desconhecido", INTERNAL_SERVER_ERROR, TRUE),
+
+    ERRO_AO_PROCESSAR_RECEITA_HTML("Erro ao processar receita HTML", INTERNAL_SERVER_ERROR, TRUE),
+    ERRO_AO_PROCESSAR_UBS_PROXIMAS_COM_MEDICAMENTO("Erro ao processar UBS próximas com medicamento", INTERNAL_SERVER_ERROR, TRUE),
+
+    ERRO_AO_ENVIAR_EMAIL("Erro ao enviar email", INTERNAL_SERVER_ERROR, TRUE);
 
     private final String mensagem;
 
